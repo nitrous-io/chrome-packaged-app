@@ -201,11 +201,21 @@ var nio = (function() {
     }
   }
 
-  function fetchBoxes() {
+  function fetchBoxesRemotely() {
     xhrWithAuth('GET',
                 'https://www.n2odev.com:5000/api/v0/boxes',
                 true,
                 onBoxesFetched);
+  }
+
+  function fetchBoxes() {
+    chrome.storage.local.get('boxes', function(result) {
+      if (result && ('boxes' in result)) {
+        return renderBoxesList(result.boxes);
+      } else {
+        return fetchBoxesRemotely();
+      }
+    });
   }
 
   function launchWebIde(boxId) {
@@ -236,11 +246,15 @@ var nio = (function() {
   }
 
   function hideButton(button) {
-    button.style.display = 'none';
+    if (button) {
+      button.style.display = 'none';
+    }
   }
 
   function disableButton(button) {
-    button.disabled = true;
+    if (button) {
+      button.disabled = true;
+    }
   }
 
   function renderBoxesList(boxes) {
@@ -257,15 +271,19 @@ var nio = (function() {
     });
 
     boxes_container.style.display = 'block';
+    hideButton(signin_button);
   }
 
   function onBoxesFetched(error, status, response) {
     if (!error && status == 200) {
       var boxes = JSON.parse(response)['boxes'];
-      renderBoxesList(boxes);
-      hideButton(signin_button);
+      chrome.storage.local.set({
+        'boxes': boxes
+      }, function() {
+        renderBoxesList(boxes);
+      });
     } else {
-      console.log('infoFetch failed', error, status);
+      console.log('Fetching boxes failed', error, status);
       showButton(signin_button);
     }
   }
@@ -273,13 +291,10 @@ var nio = (function() {
 
   // Handlers for the buttons's onclick events.
 
-  function interactiveSignIn() {
-    disableButton(signin_button);
+  function signInAndShowBoxes() {
     tokenFetcher.getToken(true, function(error, access_token) {
-      console.log(error);
-      console.log(access_token);
-
       if (error) {
+        signin_button = document.querySelector('#signin_btn');
         showButton(signin_button);
       } else {
         fetchBoxes();
@@ -301,12 +316,9 @@ var nio = (function() {
 
   return {
     onload: function () {
-      signin_button = document.querySelector('#signin');
-      signin_button.onclick = interactiveSignIn;
-
       boxes_container = document.querySelector('#boxes');
 
-      showButton(signin_button);
+      signInAndShowBoxes();
       handleLaunchWebIdeEvents();
     }
   };
