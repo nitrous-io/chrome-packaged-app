@@ -1,7 +1,7 @@
 var nio = (function() {
 
   var signin_button;
-  var message;
+  var boxes_container;
 
   var tokenFetcher = (function() {
     // Replace clientId and clientSecret with values obtained by you for your
@@ -208,6 +208,26 @@ var nio = (function() {
                 onBoxesFetched);
   }
 
+  function launchWebIde(boxId) {
+    var onUserSignInToken = function(error, status, response) {
+      if (!error && status == 200) {
+        var token = encodeURIComponent(JSON.parse(response)['sign_in_token']);
+        var redirectUrl = encodeURIComponent('https://www.n2odev.com:5000/app#boxes/' + boxId + '/ide');
+        var webview = document.querySelector('webview');
+
+        webview.setAttribute('src', 'https://www.n2odev.com:5000/users/sign_in_with_token?sign_in_token=' + token + '&redirect_to=' + redirectUrl);
+        webview.style.display = 'block';
+      } else {
+        console.log('Fetching user sign in token failed', error, status);
+      }
+    }
+
+    xhrWithAuth('GET',
+            'https://www.n2odev.com:5000/api/v0/user/sign_in_token',
+            true,
+            onUserSignInToken);
+  }
+
   // Functions updating the User Interface:
 
   function showButton(button) {
@@ -223,17 +243,33 @@ var nio = (function() {
     button.disabled = true;
   }
 
+  function renderBoxesList(boxes) {
+    boxes.forEach(function(box) {
+      var boxEl = document.createElement('div');
+      boxEl.id = box.id;
+      boxEl.innerHTML = '<span>' + box.name + '</span> - <span>' + box.state + '</span>';
+
+      if (box.state === 'running') {
+        boxEl.innerHTML += ' <a class="launch_web_ide_btn" href="#">(Launch Web IDE)</a>';
+      }
+
+      boxes_container.appendChild(boxEl);
+    });
+
+    boxes_container.style.display = 'block';
+  }
+
   function onBoxesFetched(error, status, response) {
     if (!error && status == 200) {
-      console.log("Boxes details : " + response);
-      //var user_info = JSON.parse(response);
-      //populateUserInfo(user_info);
+      var boxes = JSON.parse(response)['boxes'];
+      renderBoxesList(boxes);
       hideButton(signin_button);
     } else {
       console.log('infoFetch failed', error, status);
       showButton(signin_button);
     }
   }
+
 
   // Handlers for the buttons's onclick events.
 
@@ -251,14 +287,27 @@ var nio = (function() {
     });
   }
 
+  function handleLaunchWebIdeEvents() {
+    document.addEventListener('click', function(event) {
+      var target = event.target;
+      if (target.className == 'launch_web_ide_btn') {
+        var boxId = target.parentNode.id;
+        return launchWebIde(boxId);
+      } else {
+        return;
+      }
+    }, true)
+  }
+
   return {
     onload: function () {
       signin_button = document.querySelector('#signin');
       signin_button.onclick = interactiveSignIn;
 
-      message = document.querySelector('#message');
+      boxes_container = document.querySelector('#boxes');
 
       showButton(signin_button);
+      handleLaunchWebIdeEvents();
     }
   };
 })();
