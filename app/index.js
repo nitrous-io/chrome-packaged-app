@@ -1,5 +1,7 @@
 var nio = (function() {
 
+  var host = 'https://www.n2odev.com:5000';
+
   var signin_button;
   var boxes_container;
 
@@ -24,7 +26,7 @@ var nio = (function() {
 
         var options = {
           'interactive': interactive,
-          url:'https://www.n2odev.com:5000/oauth/authorize?client_id=' + clientId +
+          url: host+'/oauth/authorize?client_id=' + clientId +
               '&response_type=code' +
               '&scope=public+boxes+push+web+user'+
               '&redirect_uri=' + encodeURIComponent(redirectUri)
@@ -77,7 +79,7 @@ var nio = (function() {
         function exchangeCodeForToken(code) {
           var xhr = new XMLHttpRequest();
           xhr.open('POST',
-                   'https://www.n2odev.com:5000/oauth/token'
+                   host + '/oauth/token'
                    );
           xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
           xhr.setRequestHeader('Accept', 'application/json');
@@ -203,7 +205,7 @@ var nio = (function() {
 
   function fetchBoxesRemotely() {
     xhrWithAuth('GET',
-                'https://www.n2odev.com:5000/api/v0/boxes',
+                host + '/api/v0/boxes',
                 true,
                 onBoxesFetched);
   }
@@ -222,10 +224,11 @@ var nio = (function() {
     var onUserSignInToken = function(error, status, response) {
       if (!error && status == 200) {
         var token = encodeURIComponent(JSON.parse(response)['sign_in_token']);
-        var redirectUrl = encodeURIComponent('https://www.n2odev.com:5000/app#boxes/' + boxId + '/ide');
+        var redirectUrl = encodeURIComponent(host + '/app#boxes/' + boxId + '/ide');
+
         var webview = document.querySelector('webview');
 
-        webview.setAttribute('src', 'https://www.n2odev.com:5000/users/sign_in_with_token?sign_in_token=' + token + '&redirect_to=' + redirectUrl);
+        webview.setAttribute('src', host + '/users/sign_in_with_token?sign_in_token=' + token + '&redirect_to=' + redirectUrl);
         webview.style.display = 'block';
       } else {
         console.log('Fetching user sign in token failed', error, status);
@@ -233,7 +236,7 @@ var nio = (function() {
     }
 
     xhrWithAuth('GET',
-            'https://www.n2odev.com:5000/api/v0/user/sign_in_token',
+            host + '/api/v0/user/sign_in_token',
             true,
             onUserSignInToken);
   }
