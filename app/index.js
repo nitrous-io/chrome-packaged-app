@@ -26,6 +26,7 @@ var nio = (function() {
           'interactive': interactive,
           url:'https://www.n2odev.com:5000/oauth/authorize?client_id=' + clientId +
               '&response_type=code' +
+              '&scope=public+boxes+push+web+user'+
               '&redirect_uri=' + encodeURIComponent(redirectUri)
         }
         chrome.identity.launchWebAuthFlow(options, function(redirectUri) {
@@ -159,15 +160,59 @@ var nio = (function() {
     }
   }
 
+  function xhrWithAuth(method, url, interactive, callback) {
+    var retry = true;
+    var access_token;
+
+    console.log('xhrWithAuth', method, url, interactive);
+    getToken();
+
+    function getToken() {
+      tokenFetcher.getToken(interactive, function(error, token) {
+        console.log('token fetch', error, token);
+        if (error) {
+          callback(error);
+          return;
+        }
+
+        access_token = token;
+        requestStart();
+      });
+    }
+
+    function requestStart() {
+      var xhr = new XMLHttpRequest();
+      xhr.open(method, url);
+      xhr.setRequestHeader('Authorization', 'Bearer ' + access_token);
+      xhr.onload = requestComplete;
+      xhr.send();
+    }
+
+    function requestComplete() {
+      console.log('requestComplete', this.status, this.response);
+      if (this.status != 200 && retry) {
+        retry = false;
+        tokenFetcher.removeCachedToken(access_token);
+        access_token = null;
+        getToken();
+      } else {
+        callback(null, this.status, this.response);
+      }
+    }
+  }
+
+  function fetchBoxes() {
+    xhrWithAuth('GET',
+                'https://www.n2odev.com:5000/api/v0/boxes',
+                true,
+                onBoxesFetched);
+  }
+
   // Functions updating the User Interface:
 
   function showButton(button) {
     button.style.display = 'inline';
     button.disabled = false;
-  }
-
-  function showMessage(msg) {
-    msg.style.display = 'block';
   }
 
   function hideButton(button) {
@@ -178,15 +223,30 @@ var nio = (function() {
     button.disabled = true;
   }
 
+  function onBoxesFetched(error, status, response) {
+    if (!error && status == 200) {
+      console.log("Boxes details : " + response);
+      //var user_info = JSON.parse(response);
+      //populateUserInfo(user_info);
+      hideButton(signin_button);
+    } else {
+      console.log('infoFetch failed', error, status);
+      showButton(signin_button);
+    }
+  }
+
   // Handlers for the buttons's onclick events.
 
   function interactiveSignIn() {
     disableButton(signin_button);
     tokenFetcher.getToken(true, function(error, access_token) {
+      console.log(error);
+      console.log(access_token);
+
       if (error) {
         showButton(signin_button);
       } else {
-        showMessage(message);
+        fetchBoxes();
       }
     });
   }
