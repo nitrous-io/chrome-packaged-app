@@ -1,25 +1,23 @@
 NIO = Ember.Application.create();
+NIO.reopen({
+  host: 'https://www.n2odev.com:5000'
+})
 
 NIO.IndexRoute = Ember.Route.extend({
-  redirect: function() {
-    var authenticated = this.controllerFor('application').get('authenticated');
-    if (authenticated)
+  activate: function() {
+    if (NIO.TokenFetcher.hasToken()) {
       this.transitionTo('main');
+    }
   }
 });
 
 NIO.MainRoute = Ember.Route.extend({
+  beforeModel: function() {
+    // return a promise
+    return NIO.Box.fetch()
+  },
+
   model: function() {
-    var boxes = [
-      NIO.Box.create({
-        name: 'Test Box',
-        state: 'running'
-      }),
-      NIO.Box.create({
-        name: 'Test Box 2',
-        state: 'terminated'
-      }),
-    ]
-    return boxes;
+    return NIO.Box.findAll()
   }
 });
