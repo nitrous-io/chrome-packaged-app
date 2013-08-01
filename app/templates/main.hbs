@@ -1,10 +1,2 @@
-<ul>
-  {{#each model}}
-  <li>
-   <div>{{name}}</div>
-   {{#if running}}
-     <div><a href="#">Launch Web IDE</a></div>
-   {{/if}}
-  </li>
-  {{/each}}
-</ul>
+{{view NIO.BoxListView}}
+{{view NIO.BoxDetailsView controller="NIO.boxDetailsController"}}

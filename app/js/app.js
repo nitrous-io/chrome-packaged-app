@@ -6,18 +6,25 @@ NIO.reopen({
 NIO.IndexRoute = Ember.Route.extend({
   activate: function() {
     if (NIO.TokenFetcher.hasToken()) {
-      this.transitionTo('main');
+      this.transitionToRoute('main');
     }
   }
 });
 
 NIO.MainRoute = Ember.Route.extend({
   beforeModel: function() {
-    // return a promise
+    // returns a promise
     return NIO.Box.fetch()
   },
 
   model: function() {
     return NIO.Box.findAll()
+  },
+
+  events: {
+    'selectBox': function(id) {
+      box = NIO.Box.find(id);
+      //.set('content', box);
+    }
   }
 });

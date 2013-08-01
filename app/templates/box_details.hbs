@@ -1,0 +1,21 @@
+<div>
+  <div>{{name}}</div>
+  <div>{{state}}</div>
+  <div>{{memory}} MB</div>
+  <div>{{storage}} MB</div>
+
+  <div class="actions">
+    <button {{action 'ide'}}>IDE</button>
+    <button {{action 'settings'}}>Settings</button>
+    
+    {{#if 'running'}}
+      <button {{action 'shut_down'}}>Shut Down</button>
+      <button {{action 'restart'}}>Restart</button>
+    {{/if}}
+
+    {{#if 'stopped'}}
+      <button {{action 'start'}}>Start</button>
+      <button {{action 'terminate'}}>Teerminate</button>
+    {{/if}}
+  </div>
+</div>

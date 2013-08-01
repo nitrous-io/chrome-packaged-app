@@ -15,8 +15,13 @@ NIO.Box = Ember.Object.extend({
   storeage              : null,
 
   running: (function() {
-    return this.get('state') === 'running'
+    this.get('state') === 'running'
+  }).property('state'),
+
+  stopped: (function() {
+    this.get('state') === 'stopped'
   }).property('state')
+
 });
 
 NIO.Box.reopenClass({
@@ -76,6 +81,20 @@ NIO.Box.reopenClass({
 
   findAll: function() {
     return this.store
+  },
+
+  find: function(id) {
+    var box = null;
+    this.store.some(function(value) {
+      box = value;
+      return box.id === id
+    });
+
+    return box;
+  },
+
+  first: function() {
+    return this.store[0]
   }
 
 });

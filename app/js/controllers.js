@@ -12,7 +12,7 @@ NIO.IndexController = Ember.Controller.extend({
       self.set('connecting', false);
 
       if (error) {
-        // show a flash message
+        // TODO: show a flash message
         console.log('Login Failed')
       } else {
         self.transitionTo('main');
@@ -21,3 +21,6 @@ NIO.IndexController = Ember.Controller.extend({
   }
 });
 
+NIO.BoxDetailsController = Ember.ObjectController.extend({
+  content: NIO.Box.first()
+});
