@@ -12,6 +12,7 @@ spec/tmp/*
 coverage/
 **.orig
 .env
+build/
 
 # OSX
 .DS_Store
