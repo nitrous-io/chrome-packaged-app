@@ -5,7 +5,7 @@ Warning: WIP - Still works only with the dev environment.
 ## Testing
 
 **For the first run:**
-  Do `bundle install`
+  Do `bundle`
 
 1. `rake build` 
 

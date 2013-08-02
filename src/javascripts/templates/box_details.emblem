@@ -1,0 +1,17 @@
+div
+  div = name
+  div = state
+  div #{memory} MB
+  div #{storage} MB
+
+  .actions
+    button click="ide" IDE
+    button click="settings" Settings
+    
+    if running
+      button click="shut_down" Shut Down
+      button click="restart" Restart
+
+    if stopped
+      button click="start" Start
+      button click="terminate" Terminate

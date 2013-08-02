@@ -17,6 +17,9 @@ task :compile do
     env.logger = LOGGER
   end
 
+  # integrate emblem
+  Emblem::Sprockets.integrate sprockets
+
   sprockets.append_path(SOURCE_DIR.join('javascripts').to_s)
   sprockets.append_path(SOURCE_DIR.join('stylesheets').to_s)
 

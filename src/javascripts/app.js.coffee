@@ -1,11 +1,11 @@
 #= require ./libs/jquery-1.9.1
-#= require ./libs/handlebars-1.0.0-rc.4
+#= require ./libs/handlebars-1.0.12
 #= require ./libs/ember-1.0.0-rc.6.1
 #= require_self
 #= require routes
 #= require models
 #= require controllers
-#= require templates
+#= require_tree ./templates
 
 #= require token_fetcher
 

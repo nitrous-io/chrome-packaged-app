@@ -1,0 +1,4 @@
+ul
+  each model
+    li
+     a click="selectBox id" = name
