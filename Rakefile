@@ -8,7 +8,7 @@ Bundler.require
 
 ROOT        = Pathname(File.dirname(__FILE__))
 LOGGER      = Logger.new(STDOUT)
-BUNDLES     = %w( app.css app.js )
+BUNDLES     = %w( app.css app.js webviewer.js )
 BUILD_DIR   = ROOT.join("build")
 SOURCE_DIR  = ROOT.join("src")
 
@@ -40,7 +40,7 @@ task :build do
 
   # copy other resources
   puts 'Copying rest of the resources'
-  ['manifest.json', 'icons', 'background.js', 'index.html'].each do |resource|
+  ['manifest.json', 'icons', 'background.js', 'index.html', 'webviewer.html'].each do |resource|
     system "cp -r #{SOURCE_DIR}/#{resource} #{BUILD_DIR}/#{resource}"
   end
 

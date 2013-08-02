@@ -1,4 +1,4 @@
-ul
+ul.nav.boxes
   each model
     li
      a click="selectBox id" = name

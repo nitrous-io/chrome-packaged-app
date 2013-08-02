@@ -1,2 +1,4 @@
-h2 Welcome to Nitrous.IO
-button click="connect" disabled=connecting Connect
+.container
+  .signin-box
+    h2 Nitrous.IO
+    button.btn.btn-large.btn-primary.btn-block click="connect" disabled=connecting Connect

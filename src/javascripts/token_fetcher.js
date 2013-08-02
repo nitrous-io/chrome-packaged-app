@@ -2,8 +2,8 @@ NIO.TokenFetcher = (function() {
   // Replace clientId and clientSecret with values obtained by you for your
   // application https://github.com/settings/applications.
   var host = NIO.get('host');
-  var clientId = '2aa25d507f263f954c331c57d04f3e147e39fdaf9c6c4e146d496e99b51ddfd6';
-  var clientSecret = 'ac187c7e14fbd91943ba1350c62ec2cd85730ada36614a9f24fa831fc2de0b38';
+  var clientId = NIO.get('clientId');
+  var clientSecret = NIO.get('clientSecret');
   var redirectUri = 'https://' + chrome.runtime.id +
                     '.chromiumapp.org/nitrous';
   var redirectRe = new RegExp(redirectUri + '[#\?](.*)');

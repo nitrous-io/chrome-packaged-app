@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'json'
+gem 'sass'
 gem 'coffee-script', '~> 2.2.0'
 gem 'handlebars-source', '~> 1.0.12'
 gem 'ember-source', '>= 1.0.0.rc6.2'

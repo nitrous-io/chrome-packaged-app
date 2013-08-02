@@ -1,17 +1,24 @@
 div
-  div = name
-  div = state
-  div #{memory} MB
-  div #{storage} MB
+  h2 
+    = name
+  div 
+    strong State
+    span = state
+  div 
+    strong Memory
+    span #{memory} MB
+  div 
+    strong Storage
+    span #{storage} MB
 
   .actions
-    button click="ide" IDE
-    button click="settings" Settings
-    
     if running
-      button click="shut_down" Shut Down
-      button click="restart" Restart
+      button click="openIde" IDE
+      button click="openSettings" Settings
+
+      button click="invokeShutDown" Shut Down
+      button click="invokeRestart" Restart
 
     if stopped
-      button click="start" Start
-      button click="terminate" Terminate
+      button click="invokeStart" Start
+      button click="invokeTerminate" Terminate
