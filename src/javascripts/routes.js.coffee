@@ -1,3 +1,5 @@
+#= require prefetch
+
 NIO.IndexRoute = Ember.Route.extend
   activate: ->
     if NIO.TokenFetcher.hasToken()
@@ -9,7 +11,7 @@ NIO.MainRoute = Ember.Route.extend
       appWindow.resizeTo 950, 650 
 
   beforeModel: ->
-    NIO.Box.fetch()
+    NIO.Prefetch [ NIO.Box ]
 
   model: ->
     NIO.Box.findAll()
