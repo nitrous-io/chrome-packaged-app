@@ -10,7 +10,7 @@ NIO.ChromeModel.reopenClass
     host = NIO.get 'host'
     "#{host}/api/v0/#{@resourceCollection}"
     
-  fetchFromRemote:  (deferred) ->
+  _fetchFromRemote:  (deferred) ->
     NIO.TokenFetcher.getToken false, (error, access_token) => 
       if error
         deferred.reject(error)
@@ -31,7 +31,7 @@ NIO.ChromeModel.reopenClass
         console.log 'Fetching #{@resourceCollection} failed', error, status
         deferred.reject()
 
-  fetch: ->
+  fetch: (forceRefresh=false) ->
     store = @store
     deferred = jQuery.Deferred()
 
@@ -40,11 +40,14 @@ NIO.ChromeModel.reopenClass
       loadedResources.forEach (resource) =>
         store.push this.create(resource)
 
-    chrome.storage.local.get @resourceCollection, (result) =>
-      if result && (@resourceCollection in result)
-        deferred.resolve result[@resourceCollection]
-      else
-        this.fetchFromRemote deferred
+    if forceRefresh
+      this._fetchFromRemote deferred
+    else
+      chrome.storage.local.get @resourceCollection, (result) =>
+        if result && (@resourceCollection in result)
+          deferred.resolve result[@resourceCollection]
+        else
+          this._fetchFromRemote deferred
 
     deferred.promise()
 

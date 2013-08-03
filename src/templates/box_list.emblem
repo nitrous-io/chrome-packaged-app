@@ -2,3 +2,8 @@ ul.list-group.boxes
   each model
     li.list-group-item
      a click="selectBox id" = name
+
+div
+  a click="newBox" New Box
+div
+  a click="refreshBoxes" Refresh
