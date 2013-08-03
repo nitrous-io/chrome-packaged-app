@@ -11,7 +11,7 @@ NIO.MainRoute = Ember.Route.extend
       appWindow.resizeTo 950, 650 
 
   beforeModel: ->
-    NIO.Prefetch [ NIO.Box ]
+    NIO.Prefetch [ NIO.Box, NIO.Region, NIO.BoxTemplate ]
 
   model: ->
     NIO.Box.findAll()

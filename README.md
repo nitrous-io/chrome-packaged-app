@@ -44,3 +44,7 @@
 
 * Figure out a way to switch to production build of ember when releasing.
 * Add loading animations to connect and webview.
+* Implement box actions (start, shutdown)
+* Refresh Boxes
+* New Box
+* Show User details

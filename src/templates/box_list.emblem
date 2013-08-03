@@ -1,4 +1,4 @@
-ul.nav.boxes
+ul.list-group.boxes
   each model
-    li
+    li.list-group-item
      a click="selectBox id" = name

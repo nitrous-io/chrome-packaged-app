@@ -17,12 +17,17 @@ NIO.Box = NIO.ChromeModel.extend
   storeage              : null
 
   running: (->
-    this.get('state') == 'running'
+    @get('state') == 'running'
   ).property 'state'
 
   stopped: (->
-    this.get('state') == 'stopped'
+    @get('state') == 'stopped'
   ).property 'state'
+  
+  region: (->
+    NIO.Region.find @get('region_id') 
+  ).property 'region_id'
 
 NIO.Box.reopenClass
+  store: []
   resourceCollection: 'boxes'

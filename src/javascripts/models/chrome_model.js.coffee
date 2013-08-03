@@ -1,9 +1,9 @@
-# This is minimal implementation which backed by Chrome local storage.
+# This is a minimal model implementation which backed by Chrome local storage.
 
 NIO.ChromeModel = Ember.Object.extend {}
 
 NIO.ChromeModel.reopenClass
-  store: []
+  store: null
   resourceCollection: null
   
   resourceUrl: ->

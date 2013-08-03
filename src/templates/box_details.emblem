@@ -1,24 +1,34 @@
-div
-  h2 
-    = name
-  div 
-    strong State
-    span = state
-  div 
-    strong Memory
-    span #{memory} MB
-  div 
-    strong Storage
-    span #{storage} MB
+.panel.panel-primary
+  .panel-heading
+    h2.panel-title 
+      = name
+  dl.dl-horizontal
+    dt State
+    dd = state
+  dl.dl-horizontal
+    dt Memory
+    dd #{memory} MB
+  dl.dl-horizontal
+    dt Storage
+    dd #{storage} MB
+  dl.dl-horizontal
+    dt Region
+    dd #{region.description}
+  dl.dl-horizontal
+    dt Stack
+    dd #{boxTemplate.name}
 
-  .actions
-    if running
+.btn-toolbar
+  if running
+    .btn-group
       button click="openIde" IDE
       button click="openSettings" Settings
 
+    .btn-group
       button click="invokeShutDown" Shut Down
       button click="invokeRestart" Restart
 
-    if stopped
+  if stopped
+    .btn-group
       button click="invokeStart" Start
       button click="invokeTerminate" Terminate
