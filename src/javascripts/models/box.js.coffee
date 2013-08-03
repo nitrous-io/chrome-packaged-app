@@ -1,4 +1,4 @@
-#= require chrome_model
+#= require ./chrome_model
 
 NIO.Box = NIO.ChromeModel.extend
   id                    : null
@@ -27,6 +27,10 @@ NIO.Box = NIO.ChromeModel.extend
   region: (->
     NIO.Region.find @get('region_id') 
   ).property 'region_id'
+
+  boxTemplate: (->
+    NIO.BoxTemplate.find @get('box_template_id') 
+  ).property 'box_template_id'
 
 NIO.Box.reopenClass
   store: []

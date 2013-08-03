@@ -1,4 +1,4 @@
-#= require chrome_model
+#= require ./chrome_model
 
 NIO.Region = NIO.ChromeModel.extend
   id                    : null
@@ -10,7 +10,3 @@ NIO.Region = NIO.ChromeModel.extend
 NIO.Region.reopenClass
   store: []
   resourceCollection: 'regions'
-
-  resourceUrl: ->
-    host = NIO.get 'host'
-    "#{host}/regions"

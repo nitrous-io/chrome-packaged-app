@@ -1,4 +1,4 @@
-#= require chrome_model
+#= require ./chrome_model
 
 NIO.BoxTemplate = NIO.ChromeModel.extend
   id                    : null
@@ -11,8 +11,4 @@ NIO.BoxTemplate = NIO.ChromeModel.extend
 
 NIO.BoxTemplate.reopenClass
   store: []
-  resourceCollection: 'boxTemplates'
-
-  resourceUrl: ->
-    host = NIO.get 'host'
-    "#{host}/box_templates"
+  resourceCollection: 'box_templates'
