@@ -2,12 +2,15 @@
 
 ## Testing
 
-**For the first run:**
+**On the first run:**
+
   Do `bundle`
 
 1. Go to relevant Nitrous.IO web app and create a new app (eg. for development, https://nitrous.io/oauth/applications) 
 
   You can enter something like `https://example.com/callback` for the callback URL.
+
+  **Note**: For now, you will need to use the `support-for-chrome-app` branch of the web app. It ads several API endpoints needed by the Chrome app.
 
 2. Save `config.json-example` as `config.json`. Use the `client_id` and `client_secret` from the oAuth application you created in the first step.
 
