@@ -1,0 +1,9 @@
+{
+  "development": {
+    "app_name": "Nitrous.IO (development)",
+    "app_version": "0.0.1",
+    "host": "https://www.n2odev.com:5000",
+    "client_id": "paste-generated-client-id",
+    "client_secret": "paste-generated-client_secret"
+  }
+}

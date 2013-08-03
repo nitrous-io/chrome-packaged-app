@@ -13,6 +13,7 @@ coverage/
 **.orig
 .env
 build/
+config.json
 
 # OSX
 .DS_Store

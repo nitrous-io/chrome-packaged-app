@@ -1,6 +1,6 @@
 {
-  "name": "NITROUS_APP_NAME"
-, "version": "0.0.1"
+  "name": "<%= config['app_name'] %>"
+, "version": "<%= config['app_version'] %>"
 , "manifest_version": 2
 , "description": "Your Development Environment in the Cloud"
 , "icons": {
@@ -23,6 +23,6 @@
   , "storage"
   , "webview"
   , "identity"
-  , "https://www.n2odev.com:5000/"
+  , "<%= config['host'] %>/"
   ]
 }
