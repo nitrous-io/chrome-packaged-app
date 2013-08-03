@@ -13,7 +13,7 @@ NIO.IndexController = Ember.Controller.extend
         # TODO: show a flash message
         console.log('Login Failed')
       else
-        this.transitionToRoute('main')
+        this.transitionToRoute 'main'
 
 NIO.BoxListController = Ember.ArrayController.extend {
   newBox: ->
@@ -34,6 +34,11 @@ NIO.BoxDetailsController = Ember.ObjectController.extend {
   openSettings: ->
     boxId = @get 'content.id'
     NIO.Utils.openInWebView "app#boxes/#{boxId}/edit", 1200, 750
+}
 
-
+NIO.UserController = Ember.ObjectController.extend {
+  logout: ->
+    user = @get 'content' 
+    user.logout()
+    this.transitionToRoute 'index'
 }

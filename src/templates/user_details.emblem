@@ -1,0 +1,4 @@
+div
+  = username
+  a click="logout" Logout
+  

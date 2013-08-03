@@ -1,6 +1,4 @@
 NIO.TokenFetcher = (function() {
-  // Replace clientId and clientSecret with values obtained by you for your
-  // application https://github.com/settings/applications.
   var host = NIO.get('host');
   var clientId = NIO.get('clientId');
   var clientSecret = NIO.get('clientSecret');
@@ -117,6 +115,10 @@ NIO.TokenFetcher = (function() {
     removeCachedToken: function(token_to_remove) {
       if (access_token == token_to_remove)
         access_token = null;
+    },
+
+    removeToken: function() {
+      access_token = null;
     }
   }
 })();

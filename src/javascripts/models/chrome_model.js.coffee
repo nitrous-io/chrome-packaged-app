@@ -1,4 +1,5 @@
 # This is a minimal model implementation which backed by Chrome local storage.
+# TODO: Rewrite to use Ember data adapters.
 
 NIO.ChromeModel = Ember.Object.extend {}
 
@@ -32,19 +33,21 @@ NIO.ChromeModel.reopenClass
         deferred.reject()
 
   fetch: (forceRefresh=false) ->
-    store = @store
     deferred = jQuery.Deferred()
 
     deferred.done (loadedResources) =>
-      # add them to store
-      loadedResources.forEach (resource) =>
-        store.push this.create(resource)
+      @store = []
+      if Array.isArray(loadedResources)
+        loadedResources.forEach (resource) =>
+          @store.push this.create(resource)
+      else
+        @store.push this.create(loadedResources)
 
     if forceRefresh
       this._fetchFromRemote deferred
     else
       chrome.storage.local.get @resourceCollection, (result) =>
-        if result && (@resourceCollection in result)
+        if result && (@resourceCollection of result)
           deferred.resolve result[@resourceCollection]
         else
           this._fetchFromRemote deferred
@@ -64,3 +67,7 @@ NIO.ChromeModel.reopenClass
 
   first: ->
     @store[0]
+
+  clear: ->
+    @store = []
+    chrome.storage.local.remove @resourceCollection

@@ -1,7 +1,6 @@
 ## TODO
 
-* Show User details
-* Logout - delete boxes
+* Prettify the UI
 * Implement box actions (start, shutdown)
 * Implement flash messages
 * Figure out a way to switch to production build of ember when releasing.

@@ -1,8 +1,6 @@
 #= require ./chrome_model
 
 NIO.Box = NIO.ChromeModel.extend
-  id                    : null
-
   backend_available     : null
   box_server_uri        : null
   box_template_id       : null

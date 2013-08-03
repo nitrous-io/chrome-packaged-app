@@ -1,8 +1,6 @@
 #= require ./chrome_model
 
 NIO.BoxTemplate = NIO.ChromeModel.extend
-  id                    : null
-
   name                  : null
   image                 : null
   description           : null

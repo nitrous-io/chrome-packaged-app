@@ -1,7 +1,10 @@
 NIO.IndexRoute = Ember.Route.extend
   activate: ->
+    if appWindow = chrome.app.window.current()
+      appWindow.resizeTo 325, 385
+
     if NIO.TokenFetcher.hasToken()
-      this.transitionToRoute('main')
+      this.transitionTo 'main'
 
 NIO.MainRoute = Ember.Route.extend
   activate: ->
@@ -10,14 +13,18 @@ NIO.MainRoute = Ember.Route.extend
 
   beforeModel: ->
     jQuery.when NIO.Box.fetch(), 
+                NIO.User.fetch(),
                 NIO.Region.fetch(), 
                 NIO.BoxTemplate.fetch()
 
-  model: ->
-    NIO.Box.findAll()
-
   renderTemplate: ->
     this.render()
+
+    this.render('user_details', {
+      into: 'main'
+      outlet: 'topbar'
+      controller: this.controllerFor('user')
+    })
 
     this.render('box_list', {
       into: 'main'
@@ -34,6 +41,7 @@ NIO.MainRoute = Ember.Route.extend
   setupController: ->
     this.controllerFor('boxList').set 'model', NIO.Box.findAll()
     this.controllerFor('boxDetails').set 'model', NIO.Box.first()
+    this.controllerFor('user').set 'model', NIO.User.first()
 
   events:
     selectBox: (id) ->
