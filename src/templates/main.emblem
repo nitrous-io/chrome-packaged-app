@@ -1,7 +1,8 @@
 div.row
-  = outlet topbar
+  div.col-sm-2.user_details
+    = outlet topbar
 div.row
   div.sidebar.col-4.col-sm-3
     = outlet sidebar
-  div.details.col-14.col-sm-9
+  div.details.col-14.col-sm-8
     = outlet details

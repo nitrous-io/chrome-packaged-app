@@ -9,6 +9,21 @@
 div.sidebar {
 }
 
-.nav.boxes li {
-  border-bottom: 1px solid #ccc;
+.user_details {
+  margin-left: 70%;
+  margin-bottom: 10px;
+  a {
+    margin-left: 10px;
+  }
+}
+
+.sidebar {
+  margin-left: 20px;
+}
+
+.details {
+  margin-right: 20px;
+  dt, dd {
+    line-height: 1;
+  }
 }
