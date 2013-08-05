@@ -40,6 +40,20 @@ NIO.Box = NIO.ChromeModel.extend
         state
   ).property 'state'
 
+  invoke: (action) ->
+    if action in [ 'start', 'stop', 'restart' ]
+      this.makeRequest action
+    else
+      console.log "Unsupported action - #{action}"
+
+  makeRequest: (action) ->
+    id = @get 'id'
+    NIO.Utils.makeRequest('PUT', "/boxes/#{id}/#{action}")
+    .done (data) =>
+      this.setProperties data.box
+    .fail (xhr, status, error) =>
+      console.log error
+
 NIO.Box.reopenClass
   store: []
   resourceCollection: 'boxes'

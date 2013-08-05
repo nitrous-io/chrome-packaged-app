@@ -86,7 +86,6 @@ NIO.TokenFetcher = (function() {
           // can be easily parsed to an object.
           if (this.status === 200) {
             var response = JSON.parse(this.responseText);
-            console.log(response);
             if (response.hasOwnProperty('access_token')) {
               setAccessToken(response.access_token);
             } else {

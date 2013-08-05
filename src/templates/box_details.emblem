@@ -25,10 +25,9 @@
       button click="openSettings" Settings
 
     .btn-group
-      button click="invokeShutDown" Shut Down
-      button click="invokeRestart" Restart
+      button click="invoke 'stop'" Shut Down
+      button click="invoke 'restart'" Restart
 
   if stopped
     .btn-group
-      button click="invokeStart" Start
-      button click="invokeTerminate" Terminate
+      button click="invoke 'start'" Start
