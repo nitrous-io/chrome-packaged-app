@@ -39,9 +39,9 @@ NIO.ChromeModel.reopenClass
       @store = []
       if Array.isArray(loadedResources)
         loadedResources.forEach (resource) =>
-          @store.push this.create(resource)
+          this._createResource resource
       else
-        @store.push this.create(loadedResources)
+        this._createResource loadedResources
 
     if forceRefresh
       this._fetchFromRemote deferred
@@ -58,12 +58,8 @@ NIO.ChromeModel.reopenClass
     @store
 
   find: (id) ->
-    resource = null
-    this.store.some (value) -> 
-      resource = value
+    @store.find (resource) -> 
       resource.id == id
-
-    resource 
 
   first: ->
     @store[0]
@@ -71,3 +67,12 @@ NIO.ChromeModel.reopenClass
   clear: ->
     @store = []
     chrome.storage.local.remove @resourceCollection
+
+  _createResource: (attrs) ->
+    resource = this.create attrs 
+    @store.push resource
+    @store.addEnumerableObserver resource, {
+      didChange: ->
+        console.log arguments
+        # update chrome storage
+    }

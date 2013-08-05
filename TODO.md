@@ -1,9 +1,9 @@
 ## TODO
 
-* Update box properties via pusher
+* Pusher currently doesn't work in packaged apps (need to figure out an alternate)
 * Implement flash messages
 * Prettify the UI
 * Add loading animations to connect and webview.
-* Figure out a way to switch to production build of ember when releasing.
+* Switch to production build of ember when releasing (need to remove the unload event listener in there).
 * Convert `token_fetcher` to CoffeeScript.
 
