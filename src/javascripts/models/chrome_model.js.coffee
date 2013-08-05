@@ -16,7 +16,7 @@ NIO.ChromeModel.reopenClass
       if error
         deferred.reject(error)
 
-      $.ajax
+      jQuery.ajax
         url: this.resourceUrl()
         headers: { 'Authorization': "Bearer #{access_token}" }
 
@@ -37,7 +37,7 @@ NIO.ChromeModel.reopenClass
 
     deferred.done (loadedResources) =>
       @store = []
-      if Array.isArray(loadedResources)
+      if Ember.isArray(loadedResources)
         loadedResources.forEach (resource) =>
           this._createResource resource
       else
@@ -71,8 +71,3 @@ NIO.ChromeModel.reopenClass
   _createResource: (attrs) ->
     resource = this.create attrs 
     @store.push resource
-    @store.addEnumerableObserver resource, {
-      didChange: ->
-        console.log arguments
-        # update chrome storage
-    }
