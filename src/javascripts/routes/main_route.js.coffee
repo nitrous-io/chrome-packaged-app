@@ -33,7 +33,10 @@ NIO.MainRoute = Ember.Route.extend
   setupController: ->
     this.controllerFor('boxList').set 'model', NIO.Box.findAll()
     this.controllerFor('boxDetails').set 'model', NIO.Box.first()
-    this.controllerFor('user').set 'model', NIO.User.first()
+
+    currentUser = NIO.User.first()
+    this.controllerFor('user').set 'model', currentUser
+    NIO.set 'currentUser', currentUser
 
   events:
     selectBox: (id) ->
