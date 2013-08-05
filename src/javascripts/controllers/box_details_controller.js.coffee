@@ -7,6 +7,6 @@ NIO.BoxDetailsController = Ember.ObjectController.extend
     boxId = @get 'content.id'
     NIO.Utils.openInWebView "app#boxes/#{boxId}/edit", 1200, 750
 
-  invoke: (action) ->
+  doAction: (action) ->
     box = @get 'content'
-    box.invoke action
+    box.doAction action

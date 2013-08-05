@@ -40,7 +40,7 @@ NIO.Box = NIO.ChromeModel.extend
         state
   ).property 'state'
 
-  invoke: (action) ->
+  doAction: (action) ->
     if action in [ 'start', 'stop', 'restart' ]
       this.makeRequest action
     else
