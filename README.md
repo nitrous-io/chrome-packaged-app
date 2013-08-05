@@ -2,9 +2,11 @@
 
 ## Testing
 
-**On the first run:**
+**Before the first run:**
 
   Do `bundle`
+  
+  Make sure you have enabled "Experimental Extension APIs" on Chrome - http://stackoverflow.com/questions/16690171/identity-requires-google-chrome-trunk-channel-or-newer-and-this-is-the-canary
 
 1. Go to relevant Nitrous.IO web app and create a new app (eg. for development, https://nitrous.io/oauth/applications) 
 
