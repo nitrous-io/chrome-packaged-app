@@ -7,32 +7,32 @@
   Do `bundle`
   
   Make sure you have enabled "Experimental Extension APIs" on Chrome - http://stackoverflow.com/questions/16690171/identity-requires-google-chrome-trunk-channel-or-newer-and-this-is-the-canary
+  
+  Alternatively, you can use Chrome Canary.
 
-1. Go to relevant Nitrous.IO web app and create a new app (eg. for development, https://nitrous.io/oauth/applications) 
+1. For now, you will need to switch to the `support-for-chrome-app` branch of the web app to test the packaged app. It adds several API endpoints needed by the Chrome app.
 
-  You can enter something like `https://example.com/callback` for the callback URL.
+2. On the web app end, run `rake db:seed`.
 
-  **Note**: For now, you will need to use the `support-for-chrome-app` branch of the web app. It ads several API endpoints needed by the Chrome app.
+3. Save `config.json-example` as `config.json`.
 
-2. Save `config.json-example` as `config.json`. Use the `client_id` and `client_secret` from the oAuth application you created in the first step.
+4. Then run, `rake build` (or `rake build:staging` if you want to create a staging build)
 
-3. Then run, `rake build` (or `rake build:staging` if you want to create a staging build)
-
-4. In Chrome, bring up the extensions management page by clicking the wrench icon and choosing Tools > Extensions.
+5. In Chrome, bring up the extensions management page by clicking the wrench icon and choosing Tools > Extensions.
    If Developer mode has a + by it, click the +. 
    The + changes to a -, and more buttons and information appear.
 
-5. Click the Load unpacked extension button. A file dialog appears.
+6. Click the Load unpacked extension button. A file dialog appears.
 
-6. In the file dialog, select the `build/development` and click OK.
+7. In the file dialog, select the `build/development` and click OK.
 
-7. Once the app is loaded, Chrome will show a unique ID for it (a 32-byte alphanumeric string)
+8. Once the app is loaded, Chrome will show a unique ID for it (a 32-byte alphanumeric string)
     
-8. Use that to derive the callback URL for the app (ie. https://{APP_ID}.chromiumapp.org/nitrous)
+9. Use that to derive the callback URL for the app (ie. https://{APP_ID}.chromiumapp.org/oauth_response.html)
     
-   Go back to "oAuth Applications" section in the NitrousIO app and update the callback URL with it.
+   Go to the "oAuth Applications" section in the NitrousIO web app (ie. https://www.n2odev.com/oauth/applications) and update the callback URL with the derived URL.
 
-9. Click 'Launch' on Chrome app and you're ready to go.
+10. Click 'Launch' on Chrome app and you're ready to go.
 
    **Note**: If you only see a blank window, click 'Inspect Element' on the context menu (right-click). That should bring up the console and load the app (this is due to some Ember loading issues).
     
