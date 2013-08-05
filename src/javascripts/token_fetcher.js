@@ -3,7 +3,7 @@ NIO.TokenFetcher = (function() {
   var clientId = NIO.get('clientId');
   var clientSecret = NIO.get('clientSecret');
   var redirectUri = 'https://' + chrome.runtime.id +
-                    '.chromiumapp.org/nitrous';
+                    '.chromiumapp.org/oauth_response.html';
   var redirectRe = new RegExp(redirectUri + '[#\?](.*)');
 
   var access_token = null;
