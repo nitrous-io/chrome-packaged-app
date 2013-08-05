@@ -30,6 +30,16 @@ NIO.Box = NIO.ChromeModel.extend
     NIO.BoxTemplate.find @get('box_template_id') 
   ).property 'box_template_id'
 
+  stateForDisplay: (->
+    switch state = @get 'state'
+      when 'failed'
+        'provisioning failed'
+      when 'changing_specs'
+        'changing specs'
+      else
+        state
+  ).property 'state'
+
 NIO.Box.reopenClass
   store: []
   resourceCollection: 'boxes'

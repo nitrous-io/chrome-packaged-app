@@ -4,7 +4,7 @@
       = name
   dl.dl-horizontal
     dt State
-    dd = state
+    dd = stateForDisplay
   dl.dl-horizontal
     dt Memory
     dd #{memory} MB
