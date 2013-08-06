@@ -38,6 +38,8 @@ NIO.MainRoute = Ember.Route.extend
     this.controllerFor('user').set 'model', currentUser
     NIO.set 'currentUser', currentUser
 
+    this.controllerFor('pusher').initialize NIO.get('pusherKey'), NIO.get('pusherEndpoint')
+
   events:
     selectBox: (id) ->
       box = NIO.Box.find id
