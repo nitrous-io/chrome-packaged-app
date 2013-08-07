@@ -1,6 +1,10 @@
 .container
   .signin-box
     h2 Nitrous.IO
+    
+    div class={ :alert :alert-danger error::hide }
+      strong Oops!
+      |  The username or password you entered is incorrect.
 
     form
       fieldset
