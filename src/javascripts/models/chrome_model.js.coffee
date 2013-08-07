@@ -12,7 +12,7 @@ NIO.ChromeModel.reopenClass
     "#{host}/api/v0/#{@resourceCollection}"
     
   _fetchFromRemote:  (deferred) ->
-    NIO.TokenFetcher.getToken false, (error, access_token) => 
+    NIO.Session.getToken (error, access_token) =>
       if error
         deferred.reject(error)
 
@@ -23,7 +23,11 @@ NIO.ChromeModel.reopenClass
       .done (data) =>
         loadedResources = data[@resourceCollection]
 
-        deferred.resolve loadedResources
+        storageObj = {}
+        storageObj[@resourceCollection] = loadedResources
+
+        chrome.storage.local.set storageObj, ->
+          deferred.resolve loadedResources
       .fail (jqxhr, status, error) =>
         console.log 'Fetching #{@resourceCollection} failed', error, status
         deferred.reject()
@@ -66,8 +70,4 @@ NIO.ChromeModel.reopenClass
 
   _createResource: (attrs) ->
     resource = this.create attrs 
-    storageObj = storageObj[@resourceCollection] || {}
-
-    chrome.storage.local.set storageObj, ->
-
     @store.push resource

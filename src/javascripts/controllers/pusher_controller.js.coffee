@@ -10,7 +10,7 @@ NIO.PusherController = Ember.Controller.extend
     # For now log all messages
     Pusher.log = (message) -> console.log message
 
-    NIO.TokenFetcher.getToken true, (error, access_token) =>
+    NIO.Session.getToken (error, access_token) =>
       unless error
         @set 'pusher', pusher = new Pusher pusherKey,
                                 encrypted: true,

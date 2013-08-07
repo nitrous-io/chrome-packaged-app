@@ -28,9 +28,10 @@ NIO.IndexController = Ember.Controller.extend
         @set 'username', null
         @set 'password', null
 
-        NIO.Session.create data
-        
-        @set 'loading', false
+        NIO.Session.create data, =>
+          @set 'loading', false
+          this.transitionToRoute 'main'
+          
       .fail -> 
         # TODO: show a flash message
         console.log('Login Failed')

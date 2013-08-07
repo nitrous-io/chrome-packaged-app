@@ -18,4 +18,4 @@ NIO.User.reopenClass
     # remove boxes from local storage
     NIO.Box.clear()
     # clear the access token
-    NIO.TokenFetcher.removeToken()
+    NIO.Session.clear()
