@@ -1,0 +1,15 @@
+.container
+  .signin-box
+    h2 Nitrous.IO
+
+    form
+      fieldset
+        legend Sign In
+        
+        label for="usernameField" Username
+        Ember.TextField valueBinding="username" id="usernameField"
+
+        label for="passwordField" Pasword
+        Ember.TextField valueBinding="password" type="password" id="passwordField"
+
+        button.btn.btn-large.btn-primary.btn-block click="login" disabled=loading Login
