@@ -3,7 +3,7 @@ NIO.Utils =
     host = NIO.get 'host'
     deferred = jQuery.Deferred()
 
-    NIO.TokenFetcher.getToken true, (error, access_token) =>
+    NIO.Session.getToken (error, access_token) =>
       if error
         console.log 'access token not available'
         deferred.reject (errror)

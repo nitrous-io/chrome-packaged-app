@@ -12,7 +12,7 @@ NIO.ChromeModel.reopenClass
     "#{host}/api/v0/#{@resourceCollection}"
     
   _fetchFromRemote:  (deferred) ->
-    NIO.TokenFetcher.getToken false, (error, access_token) => 
+    NIO.Session.getToken (error, access_token) =>
       if error
         deferred.reject(error)
 
