@@ -1,21 +1,21 @@
 #= require ./chrome_model
 
-NIO.User = NIO.ChromeModel.extend
+AIO.User = AIO.ChromeModel.extend
   username    : null
   email       : null
   full_name   : null
   admin       : null
 
   logout: ->
-    NIO.User.logout()
+    AIO.User.logout()
 
-NIO.User.reopenClass
+AIO.User.reopenClass
   store: []
   resourceCollection: 'user'
 
   logout: ->
     this.clear()
     # remove boxes from local storage
-    NIO.Box.clear()
+    AIO.Box.clear()
     # clear the access token
-    NIO.Session.clear()
+    AIO.Session.clear()

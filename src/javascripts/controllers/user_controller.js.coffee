@@ -1,4 +1,4 @@
-NIO.UserController = Ember.ObjectController.extend
+AIO.UserController = Ember.ObjectController.extend
   logout: ->
     user = @get 'content' 
     user.logout()

@@ -1,16 +1,16 @@
-NIO.PusherController = Ember.Controller.extend
+AIO.PusherController = Ember.Controller.extend
   pusher: null
   channel: null
   channelName: (->
-    if currentUserId = NIO.get 'currentUser.id'
+    if currentUserId = AIO.get 'currentUser.id'
       "private-user-#{currentUserId}"
-  ).property 'NIO.currentUser.id'
+  ).property 'AIO.currentUser.id'
 
   initialize: (pusherKey, pusherEndpoint) ->
     # For now log all messages
     Pusher.log = (message) -> console.log message
 
-    NIO.Session.getToken (error, access_token) =>
+    AIO.Session.getToken (error, access_token) =>
       unless error
         @set 'pusher', pusher = new Pusher pusherKey,
                                 encrypted: true,
@@ -25,4 +25,4 @@ NIO.PusherController = Ember.Controller.extend
           if json.box.id
             # TODO: Rather than refreshing all boxes,
             # Update only the one that was modified.
-            NIO.Box.fetch(true)
+            AIO.Box.fetch(true)

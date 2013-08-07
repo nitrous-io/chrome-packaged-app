@@ -1,6 +1,6 @@
-NIO.IndexRoute = Ember.Route.extend
+AIO.IndexRoute = Ember.Route.extend
   activate: ->
-    NIO.Session.getToken (error) =>
+    AIO.Session.getToken (error) =>
       if error
         this.transitionTo 'login'
       else

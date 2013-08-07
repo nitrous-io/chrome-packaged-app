@@ -1,6 +1,6 @@
 #= require ./chrome_model
 
-NIO.Box = NIO.ChromeModel.extend
+AIO.Box = AIO.ChromeModel.extend
   backend_available     : null
   box_server_uri        : null
   box_template_id       : null
@@ -23,11 +23,11 @@ NIO.Box = NIO.ChromeModel.extend
   ).property 'state'
   
   region: (->
-    NIO.Region.find @get('region_id') 
+    AIO.Region.find @get('region_id') 
   ).property 'region_id'
 
   boxTemplate: (->
-    NIO.BoxTemplate.find @get('box_template_id') 
+    AIO.BoxTemplate.find @get('box_template_id') 
   ).property 'box_template_id'
 
   stateForDisplay: (->
@@ -48,12 +48,12 @@ NIO.Box = NIO.ChromeModel.extend
 
   makeRequest: (action) ->
     id = @get 'id'
-    NIO.Utils.makeRequest('PUT', "/boxes/#{id}/#{action}")
+    AIO.Utils.makeRequest('PUT', "/boxes/#{id}/#{action}")
     .done (data) =>
       this.setProperties data.box
     .fail (xhr, status, error) =>
       console.log error
 
-NIO.Box.reopenClass
+AIO.Box.reopenClass
   store: []
   resourceCollection: 'boxes'

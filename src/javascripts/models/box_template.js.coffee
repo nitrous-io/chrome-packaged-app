@@ -1,12 +1,12 @@
 #= require ./chrome_model
 
-NIO.BoxTemplate = NIO.ChromeModel.extend
+AIO.BoxTemplate = AIO.ChromeModel.extend
   name                  : null
   image                 : null
   description           : null
   enabled               : false
   runtime               : null
 
-NIO.BoxTemplate.reopenClass
+AIO.BoxTemplate.reopenClass
   store: []
   resourceCollection: 'box_templates'

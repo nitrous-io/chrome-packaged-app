@@ -1,11 +1,11 @@
-NIO.Session = Ember.Object.extend
+AIO.Session = Ember.Object.extend
   access_token    : null
   scope           : null
   token_type      : null
   expires_in      : null
   refresh_token   : null
 
-NIO.Session.reopenClass
+AIO.Session.reopenClass
   create: (attrs, callback) ->
     this._super(attrs)
     
@@ -20,7 +20,7 @@ NIO.Session.reopenClass
         callback 'session not available'
 
   getToken: (callback) ->
-    NIO.Session.getCurrent (error, session) =>
+    AIO.Session.getCurrent (error, session) =>
       if error
         return callback(error)
 

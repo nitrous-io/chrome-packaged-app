@@ -1,9 +1,9 @@
-NIO.Utils =
+AIO.Utils =
   makeRequest: (type, endpoint) -> 
-    host = NIO.get 'host'
+    host = AIO.get 'host'
     deferred = jQuery.Deferred()
 
-    NIO.Session.getToken (error, access_token) =>
+    AIO.Session.getToken (error, access_token) =>
       if error
         console.log 'access token not available'
         deferred.reject (errror)
@@ -16,7 +16,7 @@ NIO.Utils =
     deferred
 
   openInWebView: (path, width, height) ->
-    host = NIO.get 'host'
+    host = AIO.get 'host'
 
     this.makeRequest('GET', '/user/sign_in_token')
     .done (data) =>

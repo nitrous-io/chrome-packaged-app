@@ -1,4 +1,4 @@
-NIO.LoginController = Ember.Controller.extend
+AIO.LoginController = Ember.Controller.extend
   username: null
   password: null
 
@@ -13,7 +13,7 @@ NIO.LoginController = Ember.Controller.extend
     unless username && password
       @set 'error', true
     
-    host = NIO.get 'host'
+    host = AIO.get 'host'
     jQuery.ajax({
       url: "#{host}/oauth/token"
       data: {
@@ -21,8 +21,8 @@ NIO.LoginController = Ember.Controller.extend
               username: username
               password: password
               scope: "public boxes push web user"
-              client_id: NIO.get 'clientId'
-              client_secret: NIO.get 'clientSecret'
+              client_id: AIO.get 'clientId'
+              client_secret: AIO.get 'clientSecret'
             }
       type: "POST"
     })
@@ -31,7 +31,7 @@ NIO.LoginController = Ember.Controller.extend
       @set 'username', null
       @set 'password', null
 
-      NIO.Session.create data, =>
+      AIO.Session.create data, =>
         this.transitionToRoute 'main'
     .fail => 
       @set 'error', true

@@ -4,17 +4,15 @@
 #= require ./libs/pusher-2.1
 #= require_self
 #= require router
+#= require utils
 #= require_tree ./routes
 #= require_tree ./models
 #= require_tree ./controllers
 #= require_tree ./../templates
 
-#= require utils
-#= require token_fetcher
+window.AIO = Ember.Application.create()
 
-window.NIO = Ember.Application.create()
-
-NIO.reopen
+AIO.reopen
   host: "<%= config['host'] %>"
   clientId: "<%= config['client_id'] %>"
   clientSecret: "<%= config['client_secret'] %>"

@@ -1,3 +1,3 @@
-NIO.Router.map ->
+AIO.Router.map ->
   @route 'login'
   @route 'main'

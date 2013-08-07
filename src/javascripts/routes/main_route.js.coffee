@@ -1,9 +1,9 @@
-NIO.MainRoute = Ember.Route.extend
+AIO.MainRoute = Ember.Route.extend
   beforeModel: ->
-    jQuery.when NIO.Box.fetch(), 
-                NIO.User.fetch(),
-                NIO.Region.fetch(), 
-                NIO.BoxTemplate.fetch()
+    jQuery.when AIO.Box.fetch(), 
+                AIO.User.fetch(),
+                AIO.Region.fetch(), 
+                AIO.BoxTemplate.fetch()
 
   renderTemplate: ->
     this.render()
@@ -27,31 +27,31 @@ NIO.MainRoute = Ember.Route.extend
     });
 
   setupController: ->
-    this.controllerFor('boxList').set 'model', NIO.Box.findAll()
-    this.controllerFor('boxDetails').set 'model', NIO.Box.first()
+    this.controllerFor('boxList').set 'model', AIO.Box.findAll()
+    this.controllerFor('boxDetails').set 'model', AIO.Box.first()
 
-    currentUser = NIO.User.first()
+    currentUser = AIO.User.first()
     this.controllerFor('user').set 'model', currentUser
-    NIO.set 'currentUser', currentUser
+    AIO.set 'currentUser', currentUser
 
-    this.controllerFor('pusher').initialize NIO.get('pusherKey'), NIO.get('pusherEndpoint')
+    this.controllerFor('pusher').initialize AIO.get('pusherKey'), AIO.get('pusherEndpoint')
 
   events:
     selectBox: (id) ->
-      box = NIO.Box.find id
+      box = AIO.Box.find id
       controller = this.controllerFor('boxDetails')
       controller.set 'content', box
     
     refreshBoxes: ->
-      NIO.Box.fetch(true)
+      AIO.Box.fetch(true)
       .done =>
         # TODO: The way box refreshes are currently handled is hackish.
         # There should be proper bindings to auto-update
-        this.controllerFor('boxList').set 'model', NIO.Box.findAll()
+        this.controllerFor('boxList').set 'model', AIO.Box.findAll()
         
         boxDetails = this.controllerFor('boxDetails')
         currentBoxId = boxDetails.get 'content.id'
-        boxDetails.set 'model', NIO.Box.find currentBoxId
+        boxDetails.set 'model', AIO.Box.find currentBoxId
 
         # TODO: Show a flash message to user.
         console.log 'boxes updated'

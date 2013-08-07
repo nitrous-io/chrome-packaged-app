@@ -1,1 +1,1 @@
-NIO.ApplicationController = Ember.Controller.extend {}
+AIO.ApplicationController = Ember.Controller.extend {}

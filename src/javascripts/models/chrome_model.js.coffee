@@ -1,18 +1,18 @@
 # This is a minimal model implementation which backed by Chrome local storage.
 # TODO: Rewrite to use Ember data adapters.
 
-NIO.ChromeModel = Ember.Object.extend {}
+AIO.ChromeModel = Ember.Object.extend {}
 
-NIO.ChromeModel.reopenClass
+AIO.ChromeModel.reopenClass
   store: null
   resourceCollection: null
   
   resourceUrl: ->
-    host = NIO.get 'host'
+    host = AIO.get 'host'
     "#{host}/api/v0/#{@resourceCollection}"
     
   _fetchFromRemote:  (deferred) ->
-    NIO.Session.getToken (error, access_token) =>
+    AIO.Session.getToken (error, access_token) =>
       if error
         deferred.reject(error)
 

@@ -1,10 +1,10 @@
 #= require ./chrome_model
 
-NIO.Region = NIO.ChromeModel.extend
+AIO.Region = AIO.ChromeModel.extend
   name                  : null
   state                 : null
   description           : null
 
-NIO.Region.reopenClass
+AIO.Region.reopenClass
   store: []
   resourceCollection: 'regions'

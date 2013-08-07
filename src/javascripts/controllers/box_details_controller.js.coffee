@@ -1,11 +1,11 @@
-NIO.BoxDetailsController = Ember.ObjectController.extend
+AIO.BoxDetailsController = Ember.ObjectController.extend
   openIde: ->
     boxId = @get 'content.id'
-    NIO.Utils.openInWebView "app#boxes/#{boxId}/ide", 1200, 750
+    AIO.Utils.openInWebView "app#boxes/#{boxId}/ide", 1200, 750
 
   openSettings: ->
     boxId = @get 'content.id'
-    NIO.Utils.openInWebView "app#boxes/#{boxId}/edit", 1200, 750
+    AIO.Utils.openInWebView "app#boxes/#{boxId}/edit", 1200, 750
 
   doAction: (action) ->
     box = @get 'content'
