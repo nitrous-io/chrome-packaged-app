@@ -1,16 +1,36 @@
 NIO.IndexController = Ember.Controller.extend
-  connecting: null
+  username: null
+  password: null
 
-  connect: ->
-    @set 'connecting', true
+  loading: null
 
-    NIO.TokenFetcher.getToken true, (error, access_token) =>
-      @set 'connecting', false
+  login: ->
+    @set 'loading', true
+    username = @get 'username'
+    password = @get 'password'
+   
+    if username && password
+      host = NIO.get 'host'
+      jQuery.ajax({
+        url: "#{host}/oauth/token"
+        data: {
+                grant_type: "password"
+                username: username
+                password: password
+                scope: "public boxes push web user"
+                client_id: NIO.get 'clientId'
+                client_secret: NIO.get 'clientSecret'
+              }
+        type: "POST"
+      })
+      .done (data) =>
+        # clear username and password
+        @set 'username', null
+        @set 'password', null
 
-      if error
+        NIO.Session.create data
+        
+        @set 'loading', false
+      .fail -> 
         # TODO: show a flash message
         console.log('Login Failed')
-      else
-        this.transitionToRoute 'main'
-
-

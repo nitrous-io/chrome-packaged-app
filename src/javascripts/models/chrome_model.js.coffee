@@ -23,11 +23,7 @@ NIO.ChromeModel.reopenClass
       .done (data) =>
         loadedResources = data[@resourceCollection]
 
-        storageObj = {}
-        storageObj[@resourceCollection] = loadedResources
-
-        chrome.storage.local.set storageObj, ->
-          deferred.resolve loadedResources
+        deferred.resolve loadedResources
       .fail (jqxhr, status, error) =>
         console.log 'Fetching #{@resourceCollection} failed', error, status
         deferred.reject()
@@ -70,4 +66,8 @@ NIO.ChromeModel.reopenClass
 
   _createResource: (attrs) ->
     resource = this.create attrs 
+    storageObj = storageObj[@resourceCollection] || {}
+
+    chrome.storage.local.set storageObj, ->
+
     @store.push resource

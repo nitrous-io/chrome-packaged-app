@@ -3,4 +3,4 @@
     h2 Nitrous.IO
     Ember.TextField valueBinding="username"
     Ember.TextField valueBinding="password" type="password"
-    button.btn.btn-largebtn-primary.btn-block click="login" disabled=connecting Login
+    button.btn.btn-largebtn-primary.btn-block click="login" disabled=loading Login
