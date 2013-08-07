@@ -1,4 +1,0 @@
-.container
-  .signin-box
-    h2 Nitrous.IO
-    button.btn.btn-large.btn-primary.btn-block click="connect" disabled=connecting Connect

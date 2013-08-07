@@ -1,8 +1,4 @@
 NIO.MainRoute = Ember.Route.extend
-  activate: ->
-    if appWindow = chrome.app.window.current()
-      appWindow.resizeTo 950, 650 
-
   beforeModel: ->
     jQuery.when NIO.Box.fetch(), 
                 NIO.User.fetch(),

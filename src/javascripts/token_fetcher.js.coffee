@@ -1,0 +1,4 @@
+NIO.TokenFetcher = {
+  hasToken: ->
+    false
+}
