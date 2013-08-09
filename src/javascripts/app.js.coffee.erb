@@ -13,7 +13,8 @@
 #= require_tree ./views
 #= require_tree ./../templates
 
-window.AIO = Ember.Application.create()
+window.AIO = Ember.Application.create
+  rootElement: "#app"
 
 AIO.reopen
   host: "<%= config['host'] %>"
