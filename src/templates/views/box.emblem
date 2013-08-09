@@ -21,12 +21,12 @@
                   a href='#' Settings
                 li.divider
                 li
-                  a href='#' Restart
+                  a click="doAction this 'restart'" Restart
                 li
-                  a href='#' Shut Down
+                  a click="doAction this 'stop'" Shut Down
               if stopped
                 li
-                  a href='#' Start
+                  a click="doAction this 'start'" Start
       else
         p = stateForDisplay
 

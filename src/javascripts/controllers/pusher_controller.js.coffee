@@ -21,8 +21,10 @@ AIO.PusherController = Ember.Controller.extend
 
         @set 'channel', channel = pusher.subscribe @get('channelName')
 
-        channel.bind 'aio:box_updated', (json) ->
+        channel.bind 'aio:box_updated', (json) =>
           if json.box.id
             # TODO: Rather than refreshing all boxes,
             # Update only the one that was modified.
             AIO.Box.fetch(true)
+            .done =>
+              this.controllerFor('main').set 'model', AIO.Box.findAll()

@@ -6,7 +6,6 @@ AIO.AppDividerComponent = Ember.Component.extend
 
   toggleSidebar: ->
     if sidebarVisible = @toggleProperty('sidebarVisible')
-      console.log sidebarVisible
       $('#app').css 'padding-left', 320
       $('#app-sidebar').css 'left', 0
     else

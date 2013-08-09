@@ -34,10 +34,8 @@ AIO.MainRoute = Ember.Route.extend
     this.controllerFor('pusher').initialize AIO.get('pusherKey'), AIO.get('pusherEndpoint')
 
   events:
-    selectBox: (id) ->
-      box = AIO.Box.find id
-      controller = this.controllerFor('boxDetails')
-      controller.set 'content', box
+    doAction: (box, action) ->
+      box.doAction action
     
     refreshBoxes: ->
       AIO.Box.fetch(true)

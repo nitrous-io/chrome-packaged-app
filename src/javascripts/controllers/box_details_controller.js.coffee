@@ -7,6 +7,6 @@ AIO.BoxDetailsController = Ember.ObjectController.extend
     boxId = @get 'content.id'
     AIO.Utils.openInWebView "app#boxes/#{boxId}/edit", 1200, 750
 
-  doAction: (action) ->
+  doAction: (box, action) ->
     box = @get 'content'
     box.doAction action
