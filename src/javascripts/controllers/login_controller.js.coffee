@@ -9,10 +9,10 @@ AIO.LoginController = Ember.Controller.extend
     @set 'loading', true
     username = @get 'username'
     password = @get 'password'
-   
+￿
     unless username && password
       @set 'error', true
-    
+￿
     host = AIO.get 'host'
     jQuery.ajax({
       url: "#{host}/oauth/token"
@@ -33,7 +33,7 @@ AIO.LoginController = Ember.Controller.extend
 
       AIO.Session.create data, =>
         this.transitionToRoute 'main'
-    .fail => 
+    .fail =>￿
       @set 'error', true
     .always =>
       @set 'loading', false

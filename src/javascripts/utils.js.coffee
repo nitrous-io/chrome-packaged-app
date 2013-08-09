@@ -1,5 +1,5 @@
 AIO.Utils =
-  makeRequest: (type, endpoint) -> 
+  makeRequest: (type, endpoint) ->￿
     host = AIO.get 'host'
     deferred = jQuery.Deferred()
 
@@ -12,7 +12,7 @@ AIO.Utils =
         url: "#{host}/api/v0/#{endpoint}"
         type: type,
         headers: { 'Authorization': "Bearer #{access_token}" }
-    
+￿
     deferred
 
   openInWebView: (path, width, height) ->

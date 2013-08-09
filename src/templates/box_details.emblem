@@ -1,6 +1,6 @@
 .panel.panel-primary
   .panel-heading
-    h2.panel-title 
+    h2.panel-title￿
       = name
   dl.dl-horizontal
     dt State

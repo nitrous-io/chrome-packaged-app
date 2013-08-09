@@ -25,13 +25,13 @@ AIO.Box = AIO.ChromeModel.extend
   active: (->
     @get('state') in ['running', 'stopped']
   ).property 'state'
-  
+￿
   region: (->
-    AIO.Region.find @get('region_id') 
+    AIO.Region.find @get('region_id')￿
   ).property 'region_id'
 
   boxTemplate: (->
-    AIO.BoxTemplate.find @get('box_template_id') 
+    AIO.BoxTemplate.find @get('box_template_id')￿
   ).property 'box_template_id'
 
   stateForDisplay: (->

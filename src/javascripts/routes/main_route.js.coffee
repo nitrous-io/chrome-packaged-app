@@ -1,8 +1,8 @@
 AIO.MainRoute = Ember.Route.extend
   beforeModel: ->
-    jQuery.when AIO.Box.fetch(), 
+    jQuery.when AIO.Box.fetch(),￿
                 AIO.User.fetch(),
-                AIO.Region.fetch(), 
+                AIO.Region.fetch(),￿
                 AIO.BoxTemplate.fetch()
 
   renderTemplate: ->
@@ -36,14 +36,14 @@ AIO.MainRoute = Ember.Route.extend
   events:
     doAction: (box, action) ->
       box.doAction action
-    
+￿
     refreshBoxes: ->
       AIO.Box.fetch(true)
       .done =>
         # TODO: The way box refreshes are currently handled is hackish.
         # There should be proper bindings to auto-update
         this.controllerFor('boxList').set 'model', AIO.Box.findAll()
-        
+￿
         boxDetails = this.controllerFor('boxDetails')
         currentBoxId = boxDetails.get 'content.id'
         boxDetails.set 'model', AIO.Box.find currentBoxId
