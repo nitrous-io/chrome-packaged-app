@@ -63,8 +63,12 @@ namespace :build do
   task :default => [:advertise_target, :compile] do
     target = ENV['TARGET']
     # copy other resources
-    puts 'Copying rest of the resources'
-    ['icons', 'background.js', '*.html'].each do |resource|
+    ['icons', 
+      'background.js', 
+      'index.html',
+      'font'
+    ].each do |resource|
+      puts "Copying #{SOURCE_DIR}/#{resource} to #{BUILD_DIR}/#{target}/"
       system "cp -r #{SOURCE_DIR}/#{resource} #{BUILD_DIR}/#{target}"
     end
 

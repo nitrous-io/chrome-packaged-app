@@ -1,9 +1,58 @@
-ul.list-group.boxes
-  each model
-    li.list-group-item
-     a click="selectBox id" = name
+.navbar
+  .navbar-brand Nitrous.IO
+  ul.nav.navbar-nav.pull-right
+    li.dropdown
+      a.dropdown-toggle data-toggle='dropdown' href='#'
+        i.icon-ellipsis-vertical
+      ul.dropdown-menu
+        li.dropdown-header
+          i.icon-bolt &nbsp;
+          | N2O : 15 / 185
+        li
+          a href='#' Earn More N2O...
+        li.divider
+        li
+          a href='#' Invites
+        li
+          a href='#' Boxes
+        li
+          a href='#' Public Keys
+        li.divider
+        li
+          a href='#' Account Settings
+        li
+          a href='#' Applications
+        li.divider
+        li
+          a href='#' Sign Out
 
-div
-  a click="newBox" New Box
-div
-  a click="refreshBoxes" Refresh
+#user-info
+  .n2o
+    i.icon-bolt &nbsp;
+    .n2o-gauge
+      .bar style='width: 8%'
+#boxes-list.accordion
+
+  .accordion-group
+    .accordion-heading
+      a.accordion-toggle data-toggle='collapse' data-parent='#boxes-list' href='#box1'
+        .state-orb.running title='Running'
+        | my-rails-box-15
+    #box1.accordion-body.collapse
+      .accordion-inner
+        .btn-toolbar
+          .btn-group
+            button.btn.btn-primary IDE
+          .btn-group
+            button.btn.btn-default Terminal
+          .btn-group.pull-right
+            button.btn.btn-default.dropdown-toggle data-toggle='dropdown'
+              i.icon-off
+            ul.dropdown-menu
+              li
+                a href='#' Settings
+              li.divider
+              li
+                a href='#' Restart
+              li
+                a href='#' Shut Down
