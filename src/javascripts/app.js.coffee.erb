@@ -1,25 +1,18 @@
-#= require ./libs/jquery-1.9.1
-#= require ./libs/handlebars-1.0.12
-#= require ./libs/ember-1.0.0-rc.6.1
-#= require ./libs/pusher-2.1
-#= require ./libs/bootstrap-3.0-rc1
+#= require unload-fix
+#= require jquery/jquery-2.0.3
+#= require handlebars
+#= require ember
+#= require pusher/pusher-2.1.2
+#= require bootstrap3/js/bootstrap
 #= require_self
-#= require router
-#= require utils
-#= require_tree ./routes
-#= require_tree ./models
-#= require_tree ./controllers
-#= require_tree ./components
-#= require_tree ./views
-#= require_tree ./../templates
+#= require aio
 
-window.AIO = Ember.Application.create
+window.NitrousIO = Ember.Application.extend
   rootElement: "#app"
 
-AIO.reopen
+window.AIO = NitrousIO.create
   host: "<%= config['host'] %>"
   clientId: "<%= config['client_id'] %>"
   clientSecret: "<%= config['client_secret'] %>"
-
   pusherKey: "<%= config['pusher_key'] %>"
   pusherEndpoint: "<%= config['host'] %>/pusher/auth"

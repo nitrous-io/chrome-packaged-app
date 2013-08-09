@@ -11,5 +11,3 @@ AIO.AppDividerComponent = Ember.Component.extend
     else
       $('#app').css 'padding-left', 0
       $('#app-sidebar').css 'left', -320
-      
-
