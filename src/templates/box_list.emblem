@@ -33,26 +33,5 @@
       .bar style='width: 8%'
 #boxes-list.accordion
 
-  .accordion-group
-    .accordion-heading
-      a.accordion-toggle data-toggle='collapse' data-parent='#boxes-list' href='#box1'
-        .state-orb.running title='Running'
-        | my-rails-box-15
-    #box1.accordion-body.collapse
-      .accordion-inner
-        .btn-toolbar
-          .btn-group
-            button.btn.btn-primary IDE
-          .btn-group
-            button.btn.btn-default Terminal
-          .btn-group.pull-right
-            button.btn.btn-default.dropdown-toggle data-toggle='dropdown'
-              i.icon-off
-            ul.dropdown-menu
-              li
-                a href='#' Settings
-              li.divider
-              li
-                a href='#' Restart
-              li
-                a href='#' Shut Down
+  each model
+    AIO.BoxView

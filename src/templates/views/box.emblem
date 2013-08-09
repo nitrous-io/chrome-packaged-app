@@ -1,0 +1,32 @@
+.accordion-group
+  .accordion-heading
+    a.accordion-toggle data-toggle='collapse' data-parent='#boxes-list' click="collapseBox boxId target='view'"
+      div class={:state-orb state} title=stateForDisplay
+      = name
+  .accordion-body.collapse
+    .accordion-inner
+      if active
+        .btn-toolbar
+          if running
+            .btn-group
+              button.btn.btn-primary IDE
+            .btn-group
+              button.btn.btn-default Terminal
+          .btn-group.pull-right
+            button.btn.btn-default.dropdown-toggle data-toggle='dropdown'
+              i.icon-off
+            ul.dropdown-menu
+              if running
+                li
+                  a href='#' Settings
+                li.divider
+                li
+                  a href='#' Restart
+                li
+                  a href='#' Shut Down
+              if stopped
+                li
+                  a href='#' Start
+      else
+        p = stateForDisplay
+

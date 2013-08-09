@@ -21,6 +21,10 @@ AIO.Box = AIO.ChromeModel.extend
   stopped: (->
     @get('state') == 'stopped'
   ).property 'state'
+
+  active: (->
+    @get('state') in ['running', 'stopped']
+  ).property 'state'
   
   region: (->
     AIO.Region.find @get('region_id') 
@@ -36,6 +40,8 @@ AIO.Box = AIO.ChromeModel.extend
         'provisioning failed'
       when 'changing_specs'
         'changing specs'
+      when 'terminated'
+        'terminated!'
       else
         state
   ).property 'state'
