@@ -1,6 +1,5 @@
 #app-sidebar
   = outlet sidebar
-￿
 #app-content
   = app-divider
   #app-webview

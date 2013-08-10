@@ -6,11 +6,11 @@ AIO.ChromeModel = Ember.Object.extend {}
 AIO.ChromeModel.reopenClass
   store: null
   resourceCollection: null
-￿
+
   resourceUrl: ->
     host = AIO.get 'host'
     "#{host}/api/v0/#{@resourceCollection}"
-￿
+
   _fetchFromRemote:  (deferred) ->
     AIO.Session.getToken (error, access_token) =>
       if error
@@ -58,7 +58,7 @@ AIO.ChromeModel.reopenClass
     @store
 
   find: (id) ->
-    @store.find (resource) ->￿
+    @store.find (resource) ->
       resource.id == id
 
   first: ->
@@ -69,5 +69,5 @@ AIO.ChromeModel.reopenClass
     chrome.storage.local.remove @resourceCollection
 
   _createResource: (attrs) ->
-    resource = this.create attrs￿
+    resource = this.create attrs
     @store.push resource

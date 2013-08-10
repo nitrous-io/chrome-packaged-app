@@ -8,10 +8,10 @@ AIO.Session = Ember.Object.extend
 AIO.Session.reopenClass
   create: (attrs, callback) ->
     this._super(attrs)
-￿
+
     chrome.storage.local.set { 'session': attrs }, ->
       callback()
-￿
+
   getCurrent: (callback) ->
     chrome.storage.local.get 'session', (result) =>
       if result && ('session' of result)
