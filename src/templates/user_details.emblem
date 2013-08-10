@@ -1,3 +1,0 @@
-div.col-sm-2.user_details
-  = username
-  a click="logout" Logout

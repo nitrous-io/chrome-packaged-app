@@ -8,12 +8,6 @@ AIO.MainRoute = Ember.Route.extend
   renderTemplate: ->
     this.render()
 
-    this.render('user_details', {
-      into: 'main'
-      outlet: 'topbar'
-      controller: this.controllerFor('user')
-    })
-
     this.render('box_list', {
       into: 'main'
       outlet: 'sidebar'
@@ -28,7 +22,6 @@ AIO.MainRoute = Ember.Route.extend
     controller.set 'model', AIO.Box.findAll()
 
     currentUser = AIO.User.first()
-    this.controllerFor('user').set 'model', currentUser
     AIO.set 'currentUser', currentUser
 
     this.controllerFor('pusher').initialize AIO.get('pusherKey'), AIO.get('pusherEndpoint')
@@ -48,6 +41,25 @@ AIO.MainRoute = Ember.Route.extend
       if box
         boxId = box.get 'id'
         AIO.Utils.openInWebView "app#boxes/#{boxId}/terminal"
+
+    openInvites: ->
+      AIO.Utils.openInWebView "app#invites"
+
+    openBoxes: ->
+      AIO.Utils.openInWebView "app#boxes"
+
+    openPublicKeys: ->
+      AIO.Utils.openInWebView "app#public_keys"
+
+    openAccountSettings: ->
+      AIO.Utils.openInWebView "users/edit"
+
+    openApplications: ->
+      AIO.Utils.openInWebView "oauth/authorized_applications"
+
+    signout: ->
+      AIO.User.signout()
+      this.transitionTo 'index'
 
     doAction: (box, action) ->
       box.doAction action

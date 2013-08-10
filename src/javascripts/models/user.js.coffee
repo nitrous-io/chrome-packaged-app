@@ -6,14 +6,11 @@ AIO.User = AIO.ChromeModel.extend
   full_name   : null
   admin       : null
 
-  logout: ->
-    AIO.User.logout()
-
 AIO.User.reopenClass
   store: []
   resourceCollection: 'user'
 
-  logout: ->
+  signout: ->
     this.clear()
     # remove boxes from local storage
     AIO.Box.clear()

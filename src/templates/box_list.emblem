@@ -12,19 +12,19 @@
           a href='#' Earn More N2O...
         li.divider
         li
-          a href='#' Invites
+          a click="openInvites" Invites
         li
-          a href='#' Boxes
+          a click="openBoxes" Boxes
         li
-          a href='#' Public Keys
+          a click="openPublicKeys" Public Keys
         li.divider
         li
-          a href='#' Account Settings
+          a click="openAccountSettings" Account Settings
         li
-          a href='#' Applications
+          a click="openApplications" Applications
         li.divider
         li
-          a href='#' Sign Out
+          a click="signout" Sign Out
 
 #user-info
   .n2o
