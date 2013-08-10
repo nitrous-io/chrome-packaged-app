@@ -48,7 +48,6 @@ task :compile do
 
   sprockets.append_path File.join(ROOT_DIR, VENDOR_DIR)
 
-
   target = ENV['TARGET']
 
   BUNDLES.each do |bundle|
@@ -70,9 +69,9 @@ task :build => [:advertise_target, :compile] do
   target = ENV['TARGET']
   # copy other resources
   ['icons',
-    'background.js',
-    'index.html',
-    'webfonts'
+   'background.js',
+   'index.html',
+   'webfonts',
   ].each do |resource|
     cmd = "cp -r #{File.join SOURCE_DIR, resource} #{File.join BUILD_DIR, target}"
     puts cmd

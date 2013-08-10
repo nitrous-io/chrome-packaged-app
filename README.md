@@ -22,13 +22,7 @@ Do `bundle`
 
 7. In the file dialog, select the `build/development` and click OK.
 
-8. Once the app is loaded, Chrome will show a unique ID for it (a 32-byte alphanumeric string)
-
-9. Use that to derive the callback URL for the app (ie. https://{APP_ID}.chromiumapp.org/oauth_response.html)
-
-   Go to the "oAuth Applications" section in the NitrousIO web app (ie. https://www.n2odev.com/oauth/applications) and update the callback URL with the derived URL.
-
-10. Click 'Launch' on Chrome app and you're ready to go.
+8. Click 'Launch' on Chrome app and you're ready to go.
 
    **Note**: If you only see a blank window, click 'Inspect Element' on the context menu (right-click). That should bring up the console and load the app (this is due to some Ember loading issues).
 
