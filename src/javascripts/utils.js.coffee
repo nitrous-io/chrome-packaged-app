@@ -18,9 +18,10 @@ AIO.Utils =
   openInWebView: (path, width, height) ->
     host = AIO.get 'host'
 
-    this.makeRequest('GET', '/user/sign_in_token')
+    this.makeRequest('GET', 'user/sign_in_token')
     .done (data) =>
+      console.log 'here'
       token = encodeURIComponent data.sign_in_token
       redirectUrl = encodeURIComponent "#{host}/#{path}"
 
-      #webviewer.contentWindow.webview_src = "#{host}/users/sign_in_with_token?sign_in_token=#{token}&redirect_to=#{redirectUrl}"
+      $('webview').attr 'src', "#{host}/users/sign_in_with_token?sign_in_token=#{token}&redirect_to=#{redirectUrl}"

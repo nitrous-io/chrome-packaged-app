@@ -25,7 +25,7 @@ AIO.Box = AIO.ChromeModel.extend
   active: (->
     @get('state') in ['running', 'stopped']
   ).property 'state'
-￿
+
   region: (->
     AIO.Region.find @get('region_id')
   ).property 'region_id'
@@ -54,7 +54,7 @@ AIO.Box = AIO.ChromeModel.extend
 
   makeRequest: (action) ->
     id = @get 'id'
-    AIO.Utils.makeRequest('PUT', "/boxes/#{id}/#{action}")
+    AIO.Utils.makeRequest('PUT', "boxes/#{id}/#{action}")
     .done (data) =>
       this.setProperties data.box
     .fail (xhr, status, error) =>

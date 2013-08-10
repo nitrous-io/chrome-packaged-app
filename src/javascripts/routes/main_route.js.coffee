@@ -34,6 +34,16 @@ AIO.MainRoute = Ember.Route.extend
     this.controllerFor('pusher').initialize AIO.get('pusherKey'), AIO.get('pusherEndpoint')
 
   events:
+    openIde: (box) ->
+      if box
+        boxId = box.get 'content.id'
+        AIO.Utils.openInWebView "app#boxes/#{boxId}/ide"
+
+    openSettings: (box) ->
+      if box
+        boxId = box.get 'content.id'
+        AIO.Utils.openInWebView "app#boxes/#{boxId}/edit"
+
     doAction: (box, action) ->
       box.doAction action
 
