@@ -36,13 +36,16 @@ AIO.MainRoute = Ember.Route.extend
   events:
     openIde: (box) ->
       if box
-        boxId = box.get 'content.id'
+        boxId = box.get 'id'
         AIO.Utils.openInWebView "app#boxes/#{boxId}/ide"
 
     openSettings: (box) ->
       if box
-        boxId = box.get 'content.id'
+        boxId = box.get 'id'
         AIO.Utils.openInWebView "app#boxes/#{boxId}/edit"
+
+    openTerminal: (box) ->
+      console.log 'TODO'
 
     doAction: (box, action) ->
       box.doAction action
@@ -50,6 +53,7 @@ AIO.MainRoute = Ember.Route.extend
     refreshBoxes: ->
       AIO.Box.fetch(true)
       .done =>
+        console.log 'here'
         # TODO: The way box refreshes are currently handled is hackish.
         # There should be proper bindings to auto-update
         this.controllerFor('boxList').set 'model', AIO.Box.findAll()

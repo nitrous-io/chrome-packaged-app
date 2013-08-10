@@ -8,10 +8,15 @@ AIO.Utils =
         console.log 'access token not available'
         deferred.reject (errror)
 
-      deferred = jQuery.ajax
+      jQuery.ajax({
         url: "#{host}/api/v0/#{endpoint}"
         type: type,
         headers: { 'Authorization': "Bearer #{access_token}" }
+      })
+      .done (data) ->
+        deferred.resolve data
+      .fail ->
+        deferred.reject()
 
     deferred
 
@@ -20,7 +25,6 @@ AIO.Utils =
 
     this.makeRequest('GET', 'user/sign_in_token')
     .done (data) =>
-      console.log 'here'
       token = encodeURIComponent data.sign_in_token
       redirectUrl = encodeURIComponent "#{host}/#{path}"
 
