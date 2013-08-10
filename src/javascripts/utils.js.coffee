@@ -34,5 +34,4 @@ AIO.Utils =
         $(this).text 'loading'
 
       $('webview').on 'loadstop', (event) ->
-        console.log this.contentWindow.postMessage
-        this.contentWindow.postMessage 'hideMenus', host
+        this.contentWindow.postMessage 'chromeWebView', host
