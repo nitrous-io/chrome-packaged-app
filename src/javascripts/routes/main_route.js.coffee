@@ -45,7 +45,9 @@ AIO.MainRoute = Ember.Route.extend
         AIO.Utils.openInWebView "app#boxes/#{boxId}/edit"
 
     openTerminal: (box) ->
-      console.log 'TODO'
+      if box
+        boxId = box.get 'id'
+        AIO.Utils.openInWebView "app#boxes/#{boxId}/terminal"
 
     doAction: (box, action) ->
       box.doAction action

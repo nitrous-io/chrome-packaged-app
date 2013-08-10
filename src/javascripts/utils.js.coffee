@@ -29,3 +29,10 @@ AIO.Utils =
       redirectUrl = encodeURIComponent "#{host}/#{path}"
 
       $('webview').attr 'src', "#{host}/users/sign_in_with_token?sign_in_token=#{token}&redirect_to=#{redirectUrl}"
+
+      $('webview').on 'loadstart', ->
+        $(this).text 'loading'
+
+      $('webview').on 'loadstop', (event) ->
+        console.log this.contentWindow.postMessage
+        this.contentWindow.postMessage 'hideMenus', host
