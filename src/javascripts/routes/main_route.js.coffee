@@ -8,7 +8,7 @@ AIO.MainRoute = Ember.Route.extend
   renderTemplate: ->
     this.render()
 
-    this.render('box_list', {
+    this.render('sidebar', {
       into: 'main'
       outlet: 'sidebar'
     })

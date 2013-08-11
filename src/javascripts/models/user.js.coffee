@@ -5,6 +5,12 @@ AIO.User = AIO.ChromeModel.extend
   email       : null
   full_name   : null
   admin       : null
+  used_n2o    : null
+  max_n2o     : null
+
+  free_n2o: (->
+    (@get('max_n2o') ? 0) - (@get('used_n2o') ? 0)
+  ).property 'used_n2o', 'max_n2o'
 
 AIO.User.reopenClass
   store: []

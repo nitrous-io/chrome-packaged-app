@@ -28,3 +28,10 @@ AIO.PusherController = Ember.Controller.extend
             AIO.Box.fetch(true)
             .done =>
               this.controllerFor('main').set 'model', AIO.Box.findAll()
+
+        # TODO: test this instance
+        channel.bind 'aio:n2o_updated', (json) ->
+          if currentUser = AIO.get('currentUser')
+            n2o = json['n2o']
+            currentUser.set 'max_n2o', n2o['max']
+            currentUser.set 'used_n2o', n2o['used']
