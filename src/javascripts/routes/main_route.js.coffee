@@ -45,6 +45,9 @@ AIO.MainRoute = Ember.Route.extend
     openInvites: ->
       AIO.Utils.openInWebView "app#invites"
 
+    openN2oBonus: ->
+      AIO.Utils.openInWebView "app#n2o/bonus"
+
     openBoxes: ->
       AIO.Utils.openInWebView "app#boxes"
 

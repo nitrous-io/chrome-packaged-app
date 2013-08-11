@@ -9,7 +9,7 @@
           i.icon-bolt &nbsp;
           | N2O : 15 / 185
         li
-          a href='#' Earn More N2O...
+          a click="openN2oBonus" Earn More N2O...
         li.divider
         li
           a click="openInvites" Invites
