@@ -26,9 +26,17 @@
         li
           a click="signout" Sign Out
 
-#user-info
+#user-info.sidebar-col
   AIO.N2oGaugeView
 
 #boxes-list.accordion
   each model
     AIO.BoxView
+
+#boxes-footer.sidebar-col
+  a click="openNewBox"
+    i.icon-plus &nbsp;
+    | New Box
+  a click="refreshBoxes"
+    i.icon-refresh &nbsp;
+    | Refresh

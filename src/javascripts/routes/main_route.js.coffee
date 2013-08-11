@@ -55,6 +55,9 @@ AIO.MainRoute = Ember.Route.extend
     openApplications: ->
       AIO.Utils.openInWebView "oauth/authorized_applications"
 
+    openNewBox: ->
+      AIO.Utils.openInWebView "app#boxes/new"
+
     signout: ->
       AIO.User.signout()
       this.transitionTo 'index'
@@ -73,6 +76,3 @@ AIO.MainRoute = Ember.Route.extend
         boxDetails = this.controllerFor('boxDetails')
         currentBoxId = boxDetails.get 'content.id'
         boxDetails.set 'model', AIO.Box.find currentBoxId
-
-        # TODO: Show a flash message to user.
-        console.log 'boxes updated'
