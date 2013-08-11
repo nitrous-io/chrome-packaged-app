@@ -12,4 +12,4 @@ AIO.N2oGaugeView = Ember.View.extend
   ).property 'freeN2O', 'maxN2O'
 
   click: ->
-    @get('controller').send 'openN2oBonus'
+    @get('controller').send "open 'n2o_bonus'"
