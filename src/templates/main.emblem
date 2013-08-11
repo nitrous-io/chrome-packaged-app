@@ -4,4 +4,5 @@
   = app-divider
   #app-webview
     #facade-webview
+      .loading.alert.hide Loading...
     %webview

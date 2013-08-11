@@ -35,8 +35,8 @@ AIO.Utils =
           'visibility': 'hidden'
           'z-index': 99
         }
-        $('#facade-webview').text 'Loading'
         $('#facade-webview').show()
+        $('#facade-webview .loading').removeClass('hide')
 
       $('webview').on 'loadstop', (event) ->
         this.contentWindow.postMessage 'chromeWebView', host
@@ -45,4 +45,5 @@ AIO.Utils =
           'z-index': 101
         }
         $('#facade-webview').hide()
+        $('#facade-webview .loading').addClass('hide')
 

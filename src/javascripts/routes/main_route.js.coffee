@@ -13,11 +13,6 @@ AIO.MainRoute = Ember.Route.extend
       outlet: 'sidebar'
     })
 
-    this.render('box_details', {
-      into: 'main'
-      outlet: 'details'
-    });
-
   setupController: (controller) ->
     controller.set 'model', AIO.Box.findAll()
 
