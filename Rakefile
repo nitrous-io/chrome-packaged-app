@@ -8,7 +8,7 @@ Bundler.require
 
 ROOT_DIR    = File.expand_path(File.dirname(__FILE__))
 LOGGER      = Logger.new(STDOUT)
-BUNDLES     = %w( manifest.json app.css app.js webviewer.js )
+BUNDLES     = %w( manifest.json app.css app.js )
 BUILD_DIR   = "build"
 SOURCE_DIR  = "src/"
 VENDOR_DIR  = "vendor/"
@@ -71,12 +71,17 @@ task :build => [:advertise_target, :compile] do
   ['icons',
    'background.js',
    'index.html',
-   'webfonts',
+   'webfonts'
   ].each do |resource|
     cmd = "cp -r #{File.join SOURCE_DIR, resource} #{File.join BUILD_DIR, target}"
     puts cmd
     system cmd
   end
+
+  # copy font-awesome fonts
+  cmd = "cp -r vendor/font-awesome/font #{File.join BUILD_DIR, target}"
+  puts cmd
+  system cmd
 
   puts 'Finished building package. Please reload Chrome package to reflect the changes.'
 end
