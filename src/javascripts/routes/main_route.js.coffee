@@ -65,14 +65,14 @@ AIO.MainRoute = Ember.Route.extend
     doAction: (box, action) ->
       box.doAction action
 
+    retryLastRequest: ->
+      if lastRequest = AIO.get 'lastRequest'
+        AIO.Utils.makeRequest.apply null, lastRequest
+        AIO.set 'requestFailed', false
+
     refreshBoxes: ->
       AIO.Box.fetch(true)
       .done =>
-        console.log 'here'
         # TODO: The way box refreshes are currently handled is hackish.
         # There should be proper bindings to auto-update
-        this.controllerFor('boxList').set 'model', AIO.Box.findAll()
-
-        boxDetails = this.controllerFor('boxDetails')
-        currentBoxId = boxDetails.get 'content.id'
-        boxDetails.set 'model', AIO.Box.find currentBoxId
+        this.controller.set 'model', AIO.Box.findAll()

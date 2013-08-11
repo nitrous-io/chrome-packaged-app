@@ -5,4 +5,7 @@
   #app-webview
     #facade-webview
       .loading.alert.hide Loading...
+      div class={:retry :alert AIO.requestFailed::hide}
+        | Failed to complete the task. Check your internet connection and 
+        a click="retryLastRequest" retry.
     %webview

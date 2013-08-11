@@ -8,9 +8,6 @@ AIO.N2oGaugeView = Ember.View.extend
   barWidthStyle: (->
     freeN2O = @get('freeN2O') ? 0
     maxN2O  = @get('maxN2O')  ? 0
-    console.log freeN2O
-    console.log maxN2O
-
     "width: #{freeN2O / maxN2O * 100}%"
   ).property 'freeN2O', 'maxN2O'
 

@@ -1,7 +1,7 @@
 AIO.Utils =
-  makeRequest: (type, endpoint) ->
+  makeRequest: (type, endpoint, deferred) ->
     host = AIO.get 'host'
-    deferred = jQuery.Deferred()
+    deferred ||= jQuery.Deferred()
 
     AIO.Session.getToken (error, access_token) =>
       if error
@@ -16,7 +16,8 @@ AIO.Utils =
       .done (data) ->
         deferred.resolve data
       .fail ->
-        deferred.reject()
+        AIO.set 'requestFailed', true
+        AIO.set 'lastRequest', [ type, endpoint, deferred ]
 
     deferred
 
