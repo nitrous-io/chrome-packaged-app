@@ -153,12 +153,17 @@ a:focus
     color: #ace8ff
 
 #app-webview
-  background: #888
+  #facade-webview
+    width: 100%
+    height: 100%
+    background: #888
+    z-index: 100
 
   webview
     width: 100%
     height: 100%
-    background: #888
+    z-index: 99
+    visibility: hidden
 
 #user-info
   background: #f2f2f2

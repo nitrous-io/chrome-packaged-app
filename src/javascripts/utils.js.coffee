@@ -31,7 +31,18 @@ AIO.Utils =
       $('webview').attr 'src', "#{host}/users/sign_in_with_token?sign_in_token=#{token}&redirect_to=#{redirectUrl}"
 
       $('webview').on 'loadstart', ->
-        $(this).text 'loading'
+        $('webview').css {
+          'visibility': 'hidden'
+          'z-index': 99
+        }
+        $('#facade-webview').text 'Loading'
+        $('#facade-webview').show()
 
       $('webview').on 'loadstop', (event) ->
         this.contentWindow.postMessage 'chromeWebView', host
+        $('webview').css {
+          'visibility': 'visible'
+          'z-index': 101
+        }
+        $('#facade-webview').hide()
+
