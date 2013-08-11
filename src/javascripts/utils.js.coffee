@@ -10,7 +10,8 @@ AIO.Utils =
 
       jQuery.ajax({
         url: "#{host}/api/v0/#{endpoint}"
-        type: type,
+        type: type
+        timeout: 20 * 1000  # 20 seconds
         headers: { 'Authorization': "Bearer #{access_token}" }
       })
       .done (data) ->
