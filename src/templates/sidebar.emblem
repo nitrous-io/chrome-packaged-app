@@ -9,19 +9,19 @@
           i.icon-bolt &nbsp;
           | N2O : {{AIO.currentUser.free_n2o}} / {{AIO.currentUser.max_n2o}}
         li
-          a click="openN2oBonus" Earn More N2O...
+          a click="open 'n2o_bonus'" Earn More N2O...
         li.divider
         li
-          a click="openInvites" Invites
+          a click="open 'invites'" Invites
         li
-          a click="openBoxes" Boxes
+          a click="open 'boxes'" Boxes
         li
-          a click="openPublicKeys" Public Keys
+          a click="open 'public_keys'" Public Keys
         li.divider
         li
-          a click="openAccountSettings" Account Settings
+          a click="open 'account_settings'" Account Settings
         li
-          a click="openApplications" Applications
+          a click="open 'applications'" Applications
         li.divider
         li
           a click="signout" Sign Out
@@ -34,7 +34,7 @@
     AIO.BoxView
 
 #boxes-footer.sidebar-col
-  a click="openNewBox"
+  a click="open 'new_box'"
     i.icon-plus &nbsp;
     | New Box
   a click="refreshBoxes"

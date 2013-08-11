@@ -9,16 +9,16 @@
         .btn-toolbar
           if running
             .btn-group
-              button.btn.btn-primary click="openIde this" IDE
+              button.btn.btn-primary click="open 'ide' this" IDE
             .btn-group
-              button.btn.btn-default click="openTerminal this" Terminal
+              button.btn.btn-default click="open 'terminal' this" Terminal
           .btn-group.pull-right
             button.btn.btn-default.dropdown-toggle data-toggle='dropdown'
               i.icon-off
             ul.dropdown-menu
               if running
                 li
-                  a click="openSettings this" Settings
+                  a click="open 'settings' this" Settings
                 li.divider
                 li
                   a click="doAction this 'restart'" Restart

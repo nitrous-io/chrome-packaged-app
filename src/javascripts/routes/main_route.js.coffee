@@ -22,41 +22,24 @@ AIO.MainRoute = Ember.Route.extend
     this.controllerFor('pusher').initialize AIO.get('pusherKey'), AIO.get('pusherEndpoint')
 
   events:
-    openIde: (box) ->
+    open: (view, box) ->
       if box
         boxId = box.get 'id'
-        AIO.Utils.openInWebView "app#boxes/#{boxId}/ide"
 
-    openSettings: (box) ->
-      if box
-        boxId = box.get 'id'
-        AIO.Utils.openInWebView "app#boxes/#{boxId}/edit"
+      views = {
+        ide: "app#boxes/#{boxId}/ide"
+        settings: "app#boxes/#{boxId}/edit"
+        terminal: "app#boxes/#{boxId}/terminal"
+        invites: "app#invites"
+        n2o_bonus: "app#n2o/bonus"
+        boxes: "app#boxes"
+        public_keys: "app#public_keys"
+        account_settings: "users/edit"
+        applications: "oauth/authorized_applications"
+        new_box: "app#boxes/new"
+      }
 
-    openTerminal: (box) ->
-      if box
-        boxId = box.get 'id'
-        AIO.Utils.openInWebView "app#boxes/#{boxId}/terminal"
-
-    openInvites: ->
-      AIO.Utils.openInWebView "app#invites"
-
-    openN2oBonus: ->
-      AIO.Utils.openInWebView "app#n2o/bonus"
-
-    openBoxes: ->
-      AIO.Utils.openInWebView "app#boxes"
-
-    openPublicKeys: ->
-      AIO.Utils.openInWebView "app#public_keys"
-
-    openAccountSettings: ->
-      AIO.Utils.openInWebView "users/edit"
-
-    openApplications: ->
-      AIO.Utils.openInWebView "oauth/authorized_applications"
-
-    openNewBox: ->
-      AIO.Utils.openInWebView "app#boxes/new"
+      AIO.Utils.openInWebView views[view]
 
     signout: ->
       AIO.User.signout()
