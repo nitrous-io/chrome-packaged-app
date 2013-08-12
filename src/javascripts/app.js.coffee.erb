@@ -23,3 +23,10 @@ window.AIO = NitrousIO.create
 
   requestFailed: false
   lastRequest: null
+  online: true
+
+$(window).on 'online', ->
+  window.AIO.set 'online', true
+
+$(window).on 'offline', ->
+  window.AIO.set 'online', false
