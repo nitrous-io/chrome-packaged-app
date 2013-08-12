@@ -30,3 +30,7 @@ $(window).on 'online', ->
 
 $(window).on 'offline', ->
   window.AIO.set 'online', false
+
+# make Pusher timeline sender no-op
+prototype = Pusher.TimelineSender.prototype
+prototype.send = ->

@@ -1,6 +1,6 @@
 AIO.Utils =
   makeRequest: (type, endpoint, deferred) ->
-    if AIO.get('online')
+    unless AIO.get('online')
       return false
 
     host = AIO.get 'host'
