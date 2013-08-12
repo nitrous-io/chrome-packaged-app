@@ -7,10 +7,6 @@
 #= require_self
 #= require aio
 
-appWindow = chrome.app.window.current()
-appWindow.onBoundsChanged.addListener ->
-  $("#app, #app-content, #app-webview").height appWindow.getBounds().height
-
 window.NitrousIO = Ember.Application.extend
   rootElement: "#app"
 
