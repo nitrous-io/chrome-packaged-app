@@ -1,19 +1,23 @@
 .container
-  .signin-box
+  #signin-box
     h2 Nitrous.IO
 
     div class={ :alert :alert-danger error::hide }
       strong Oops!
       |  The username or password you entered is incorrect.
 
-    form
+    form.form-horizontal
       fieldset
         legend Sign In
 
-        label for="usernameField" Username
-        Ember.TextField valueBinding="username" id="usernameField"
+        .form-group
+          label for="usernameField" class="col-lg-5 control-label" Username
+          div class="col-lg-5"
+            Ember.TextField valueBinding="username" id="usernameField"
 
-        label for="passwordField" Pasword
-        Ember.TextField valueBinding="password" type="password" id="passwordField"
+        .form-group
+          label for="passwordField" class="col-lg-5 control-label" Pasword
+          div class="col-lg-5"
+            Ember.TextField valueBinding="password" type="password" id="passwordField"
 
         button.btn.btn-large.btn-primary.btn-block click="login" disabled=loading Login
