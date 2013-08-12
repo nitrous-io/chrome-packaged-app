@@ -22,6 +22,7 @@ task :compile do
   puts 'Compiling assets'
 
   sprockets = Sprockets::Environment.new(ROOT_DIR) do |env|
+    env.cache = Sprockets::Cache::FileStore.new('tmp/sprockets')
     env.logger = LOGGER
   end
 
@@ -52,7 +53,7 @@ task :compile do
 
   BUNDLES.each do |bundle|
     asset = sprockets.find_asset(bundle)
-    prefix, basename = asset.pathname.to_s.split('/')[-2..-1]
+    prefix = asset.pathname.to_s.split('/')[-2]
 
     if prefix == 'src'
       prefix = ''
