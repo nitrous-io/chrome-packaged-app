@@ -1,6 +1,9 @@
 .navbar
   .navbar-brand Nitrous.IO
   ul.nav.navbar-nav.pull-right
+    li
+      a href='#' click="refreshBoxes"
+        i.icon-refresh
     li.dropdown
       a.dropdown-toggle data-toggle='dropdown' href='#'
         i.icon-ellipsis-vertical
@@ -9,22 +12,25 @@
           i.icon-bolt &nbsp;
           | N2O : {{AIO.currentUser.free_n2o}} / {{AIO.currentUser.max_n2o}}
         li
-          a click="open 'n2o_bonus'" Earn More N2O...
+          a href='#' click="open 'n2o_bonus'" Earn More N2O
+        li
+          a href='#' click="open 'invites'" Invites
         li.divider
         li
-          a click="open 'invites'" Invites
+          a href='#' click="open 'new_box'"
+            | New Box...
         li
-          a click="open 'boxes'" Boxes
+          a href='#' click="open 'boxes'" Boxes
         li
-          a click="open 'public_keys'" Public Keys
+          a href='#' click="open 'public_keys'" Public Keys
         li.divider
         li
-          a click="open 'account_settings'" Account Settings
+          a href='#' click="open 'account_settings'" Account Settings
         li
-          a click="open 'applications'" Applications
+          a href='#' click="open 'applications'" Applications
         li.divider
         li
-          a click="signout" Sign Out
+          a href='#' click="signout" Sign Out
 
 #user-info.sidebar-col
   AIO.N2oGaugeView
@@ -32,11 +38,3 @@
 #boxes-list.accordion
   each model
     AIO.BoxView
-
-#boxes-footer.sidebar-col
-  a click="open 'new_box'"
-    i.icon-plus &nbsp;
-    | New Box
-  a click="refreshBoxes"
-    i.icon-refresh &nbsp;
-    | Refresh
