@@ -1,5 +1,5 @@
 .navbar
-  .navbar-brand Nitrous.IO
+  .navbar-brand.logo Nitrous.IO
   ul.nav.navbar-nav.pull-right
     li
       a href='#' click="refreshBoxes"

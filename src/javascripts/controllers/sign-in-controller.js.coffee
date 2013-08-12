@@ -1,4 +1,4 @@
-AIO.LoginController = Ember.Controller.extend
+AIO.SignInController = Ember.Controller.extend
   username: null
   password: null
 

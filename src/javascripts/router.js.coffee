@@ -1,3 +1,3 @@
 AIO.Router.map ->
-  @route 'login'
+  @route 'sign-in'
   @route 'main'

@@ -1,0 +1,14 @@
+form
+  fieldset
+    h1.logo Nitrous.IO
+
+    .form-group
+      Ember.TextField classNames="form-control input-lg" placeholder="Username" valueBinding="username"
+    .form-group
+      Ember.TextField classNames="form-control input-lg" type="password" placeholder="Password" valueBinding="password"
+
+    .form-group
+      button.btn.btn-default.btn-block.btn-lg click="login" disabled=loading Sign In
+    .form-group
+      p
+        a href={AIO.host} target='_blank' Create an Account
