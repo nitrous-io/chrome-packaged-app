@@ -1,7 +1,8 @@
 #app-sidebar
   = outlet sidebar
 #app-content
-  = app-divider
+  #app-divider click="toggleSidebar target='view'"
+    i.icon-ellipsis-vertical
   #app-webview
     #facade-webview
       .loading.alert.hide Loading...

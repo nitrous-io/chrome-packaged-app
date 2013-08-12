@@ -1,8 +1,5 @@
-AIO.AppDividerComponent = Ember.Component.extend
-  sidebarVisible: false
-
-  didInsertElement: ->
-    this.toggleSidebar()
+AIO.MainView = Em.View.extend
+  sidebarVisible: true
 
   toggleSidebar: ->
     if sidebarVisible = @toggleProperty('sidebarVisible')
