@@ -1,4 +1,4 @@
-#= require ./chrome_model
+#= require ./chrome-model
 
 AIO.Region = AIO.ChromeModel.extend
   name                  : null

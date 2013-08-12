@@ -1,4 +1,4 @@
-#= require ./chrome_model
+#= require ./chrome-model
 
 AIO.User = AIO.ChromeModel.extend
   username    : null

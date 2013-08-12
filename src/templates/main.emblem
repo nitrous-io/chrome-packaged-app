@@ -4,11 +4,4 @@
   #app-divider click="toggleSidebar target='view'"
     i.icon-ellipsis-vertical
   #app-webview
-    #facade-webview
-      .loading.alert.hide Loading...
-      div class={:retry :alert AIO.requestFailed::hide}
-        | Failed to complete the task. Check your internet connection and &nbsp;
-        a click="retryLastRequest" retry.
-      div class={:offline :alert AIO.online:hide}
-        | Not connected. Check your internet connection.
     %webview

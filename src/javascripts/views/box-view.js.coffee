@@ -1,5 +1,5 @@
 AIO.BoxView = Ember.View.extend
-  templateName: 'views/box'
+  templateName: 'box'
 
   collapseBox: ->
     @$('.accordion-body').collapse('toggle')

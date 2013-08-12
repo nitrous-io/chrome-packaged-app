@@ -34,21 +34,3 @@ AIO.Utils =
       redirectUrl = encodeURIComponent "#{host}/#{path}"
 
       $('webview').attr 'src', "#{host}/users/sign_in_with_token?sign_in_token=#{token}&redirect_to=#{redirectUrl}"
-
-      $('webview').on 'loadstart', ->
-        $('webview').css {
-          'visibility': 'hidden'
-          'z-index': 99
-        }
-        $('#facade-webview').show()
-        $('#facade-webview .loading').removeClass('hide')
-
-      $('webview').on 'loadstop', (event) ->
-        this.contentWindow.postMessage 'chromeWebView', host
-        $('webview').css {
-          'visibility': 'visible'
-          'z-index': 101
-        }
-        $('#facade-webview').hide()
-        $('#facade-webview .loading').addClass('hide')
-

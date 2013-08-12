@@ -32,8 +32,8 @@
         li
           a href='#' click="signout" Sign Out
 
-#user-info.sidebar-col
-  AIO.N2oGaugeView
+#user-info
+  AIO.N2OGaugeView
 
 #boxes-list.accordion
   each model

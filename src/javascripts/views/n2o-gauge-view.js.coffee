@@ -1,5 +1,5 @@
-AIO.N2oGaugeView = Ember.View.extend
-  templateName: 'views/n2o_gauge'
+AIO.N2OGaugeView = Ember.View.extend
+  templateName: 'n2o-gauge'
   classNames: ['n2o']
 
   freeN2OBinding: Em.Binding.oneWay 'AIO.currentUser.free_n2o'

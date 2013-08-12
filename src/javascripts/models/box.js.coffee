@@ -1,4 +1,4 @@
-#= require ./chrome_model
+#= require ./chrome-model
 
 AIO.Box = AIO.ChromeModel.extend
   backend_available     : null
