@@ -9,7 +9,7 @@ AIO.Utils =
     AIO.Session.getToken (error, access_token) =>
       if error
         console.log 'access token not available'
-        deferred.reject (errror)
+        deferred.reject (error)
 
       jQuery.ajax({
         url: "#{host}/api/v0/#{endpoint}"
