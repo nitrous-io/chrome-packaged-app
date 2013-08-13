@@ -1,7 +1,8 @@
-AIO.IndexRoute = Ember.Route.extend
+AIO.IndexRoute = Em.Route.extend
   activate: ->
-    AIO.Session.getToken (error) =>
-      if error
-        this.transitionTo 'sign-in'
+    AIO.AccessToken.loadFromStorage (tokenString) =>
+      if tokenString
+        AIO.set 'accessToken', tokenString
+        @transitionTo 'main'
       else
-        this.transitionTo 'main'
+        @transitionTo 'sign-in'

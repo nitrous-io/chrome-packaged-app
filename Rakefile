@@ -8,7 +8,7 @@ Bundler.require
 
 ROOT_DIR    = File.expand_path(File.dirname(__FILE__))
 LOGGER      = Logger.new(STDOUT)
-BUNDLES     = %w( manifest.json app.css app.js )
+BUNDLES     = %w( manifest.json application.css application.js )
 BUILD_DIR   = "build"
 SOURCE_DIR  = "src/"
 VENDOR_DIR  = "vendor/"

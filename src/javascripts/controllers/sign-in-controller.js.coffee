@@ -1,40 +1,17 @@
-AIO.SignInController = Ember.Controller.extend
-  username: null
-  password: null
+AIO.SignInController = Em.ObjectController.extend
+  errorMessage: null
 
-  error: null
-  loading: null
+  signInButtonDisabled: (->
+    @get('isSaving') || !@get('username') || !@get('password')
+  ).property 'isSaving', 'username', 'password'
 
-  login: ->
-    @set 'error', null
-    @set 'loading', true
-    username = @get 'username'
-    password = @get 'password'
-
-    unless username && password
-      @set 'error', true
-
-    host = AIO.get 'host'
-    jQuery.ajax({
-      url: "#{host}/oauth/token"
-      data: {
-              grant_type: "password"
-              username: username
-              password: password
-              scope: "public boxes push web user"
-              client_id: AIO.get 'clientId'
-              client_secret: AIO.get 'clientSecret'
-            }
-      type: "POST"
-    })
-    .done (data) =>
-      # clear username and password
-      @set 'username', null
-      @set 'password', null
-
-      AIO.Session.create data, =>
-        this.transitionToRoute 'main'
-    .fail =>
-      @set 'error', true
-    .always =>
-      @set 'loading', false
+  signIn: ->
+    @set 'errorMessage', null
+    @get('model').save().then =>
+      accessToken = @get 'accessToken'
+      AIO.set 'accessToken', accessToken
+      AIO.AccessToken.saveToStroage accessToken
+      @send 'signedIn'
+    , (jqXHR) =>
+      @set 'errorMessage', jqXHR.responseJSON?.error
+      @set 'isSaving', false

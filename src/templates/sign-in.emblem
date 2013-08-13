@@ -1,14 +1,14 @@
-form
-  fieldset class={ error:animation-shake }
+form submit="signIn"
+  fieldset class={ errorMessage:animation-shake }
     h1.logo Nitrous.IO
 
-    .form-group class={ error:has-error }
-      Ember.TextField classNames="form-control input-lg" placeholder="Username" valueBinding="username" disabledBinding="loading"
-    .form-group class={ error:has-error }
-      Ember.TextField classNames="form-control input-lg" type="password" placeholder="Password" valueBinding="password" disabledBinding="loading"
+    .form-group class={ errorMessage:has-error }
+      Ember.TextField classNames="form-control input-lg" placeholder="Username" valueBinding="username" disabledBinding="isSaving"
+    .form-group class={ errorMessage:has-error }
+      Ember.TextField classNames="form-control input-lg" type="password" placeholder="Password" valueBinding="password" disabledBinding="isSaving"
 
     .form-group
-      button.btn.btn-default.btn-block.btn-lg click="login" disabled=loading Sign In
+      button.btn.btn-default.btn-block.btn-lg disabled={signInButtonDisabled} Sign In
     .form-group
       p
         a href={ AIO.host } target='_blank' Create an Account
