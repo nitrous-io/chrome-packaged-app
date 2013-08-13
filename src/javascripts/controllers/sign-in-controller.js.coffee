@@ -6,6 +6,7 @@ AIO.SignInController = Ember.Controller.extend
   loading: null
 
   login: ->
+    @set 'error', null
     @set 'loading', true
     username = @get 'username'
     password = @get 'password'

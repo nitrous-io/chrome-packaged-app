@@ -255,3 +255,29 @@ html, body, #app,
 
     &:hover, &:focus
       color: white
+
+// animations
+
+.animation-shake
+  position: relative
+  -webkit-animation: shake 1s
+
+@-webkit-keyframes shake
+  0%
+    left:   0px
+  10%
+    left:  15px
+  20%
+    left: -15px
+  30%
+    left:  15px
+  40%
+    left: -15px
+  50%
+    left:  15px
+  60%
+    left: -15px
+  70%
+    left:   0px
+  100%
+    left:   0px
