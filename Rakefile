@@ -24,11 +24,11 @@ task :compile do
   sprockets = Sprockets::Environment.new(ROOT_DIR) do |env|
     env.logger = LOGGER
 
-    if ENV['target'] == 'production'
+    if ENV['TARGET'] == 'production'
       env.js_compressor = Closure::Compiler.new
       env.css_compressor = YUI::CssCompressor.new
     else
-      env.cache = Sprockets::Cache::FileStore.new('tmp/sprockets')
+      env.cache = Sprockets::Cache::FileStore.new("tmp/sprockets/#{ENV['TARGET']}")
     end
   end
 
@@ -72,25 +72,45 @@ task :compile do
   puts 'Compiled assets'
 end
 
-task :build => [:advertise_target, :compile] do
+task :clean do
+  puts "Cleaning..."
+  system "rm -rf build/'#{ENV['TARGET']}'"
+end
+
+desc 'clean all'
+task :clean_all do
+  puts "Cleaning..."
+  system "rm -rf build/*"
+  system "rm -rf tmp/*"
+end
+
+task :build => [:advertise_target, :clean, :compile] do
   target = ENV['TARGET']
+
+  compiled_dir = File.join BUILD_DIR, target
   # copy other resources
   ['icons',
    'background.js',
    'index.html',
    'webfonts'
   ].each do |resource|
-    cmd = "cp -r #{File.join SOURCE_DIR, resource} #{File.join BUILD_DIR, target}"
+    cmd = "cp -r #{File.join SOURCE_DIR, resource} #{compiled_dir}"
     puts cmd
     system cmd
   end
 
   # copy font-awesome fonts
-  cmd = "cp -r vendor/font-awesome/font #{File.join BUILD_DIR, target}"
+  cmd = "cp -r vendor/font-awesome/font #{compiled_dir}"
   puts cmd
   system cmd
 
-  puts 'Finished building package. Please reload Chrome package to reflect the changes.'
+  if ENV['TARGET'] == 'production'
+    filename = "NitrousIOPackagedApp-#{ENV['TARGET']}-#{load_config['app_version']}"
+    system "cd #{compiled_dir}; zip -r ../'#{filename}'.zip *"
+
+    puts "=> build/#{ENV['TARGET']}/#{filename}.zip"
+  end
+  puts 'DONE!'
 end
 
 %w(development staging production).each do |target|
@@ -102,3 +122,10 @@ end
 end
 
 task :default => :build
+
+def load_config
+  require 'json'
+  if json = JSON.load(File.read('config.json'))
+    json[ENV['TARGET']]
+  end
+end
