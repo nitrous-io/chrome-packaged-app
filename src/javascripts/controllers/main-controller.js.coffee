@@ -17,27 +17,35 @@ AIO.MainController = Em.ArrayController.extend
   sortProperties: ['id']
 
   webViewURL: null
+  webViewSignedIn: false
   pusher: null
 
   contentDidChange: (->
     AIO.Box.saveToStorage()
   ).observes 'content.@each'
 
-  signInAndOpenInWebView: (path) ->
-    AIO.SignInToken.reload().then (signInToken) =>
-      if token = signInToken.get('token')
-        @set 'webViewURL', Em.String.fmt(kSignInWithTokenURLFormat, [
-          AIO.get('host')
-          window.encodeURIComponent(token)
-          window.encodeURIComponent(path)
-        ])
+  openInWebView: (path) ->
+    webViewURL = @get 'webViewURL'
+    host = AIO.get 'host'
+    if @get 'webViewSignedIn'
+      @set 'webViewURL', "#{host}#{path}"
+    else
+      AIO.SignInToken.reload().then (signInToken) =>
+        if token = signInToken.get('token')
+          @set 'webViewURL', Em.String.fmt(kSignInWithTokenURLFormat, [
+            host
+            window.encodeURIComponent(token)
+            window.encodeURIComponent(path)
+          ])
+          $('#aio-main-view webview').one 'loadstop.main-controller', =>
+            @set 'webViewSignedIn', true
 
   refresh: ->
     AIO.CurrentUser.reload()
     AIO.Box.find().reload()
 
   openPage: (page, box) ->
-    @signInAndOpenInWebView Em.String.fmt(kPages[page], [box?.get 'id'])
+    @openInWebView Em.String.fmt(kPages[page], [box?.get 'id'])
 
   doAction: (action, box) ->
     box.makeRequest 'PUT', action
@@ -49,4 +57,7 @@ AIO.MainController = Em.ArrayController.extend
     AIO.SignInToken.reset()
     AIO.set 'currentUser', null
     AIO.set 'accessToken', null
+    $('#aio-main-view webview').off 'loadstop.main-controller'
+    @set 'webViewSignedIn', false
+    @set 'webViewURL', 'about:blank'
     @send 'signedOut'
