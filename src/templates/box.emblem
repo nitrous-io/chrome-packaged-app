@@ -17,14 +17,14 @@
           ul.dropdown-menu
             if running
               li
-                a click="openPage 'settings' this" Settings
+                a click='openPage "settings" this' Settings
               li.divider
               li
-                a click="doAction this 'restart'" Restart
+                a click='doAction "restart" this' Restart
               li
-                a click="doAction this 'stop'" Shut Down
+                a click='doAction "stop" this' Shut Down
             if stopped
               li
-                a click="doAction this 'start'" Start
+                a click='doAction "start" this' Start
     else
       p = prettyState

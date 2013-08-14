@@ -38,6 +38,9 @@ AIO.MainController = Em.ArrayController.extend
   openPage: (page, box) ->
     @signInAndOpenInWebView Em.String.fmt(kPages[page], [box?.get 'id'])
 
+  doAction: (action, box) ->
+    box.makeRequest 'PUT', action
+
   signOut: ->
     AIO.CurrentUser.reset()
     AIO.AccessToken.reset()
