@@ -1,9 +1,7 @@
-AIO.MainRoute = Ember.Route.extend
+AIO.MainRoute = Em.Route.extend
   beforeModel: ->
-    jQuery.when AIO.Box.fetch(),
-                AIO.User.fetch(),
-                AIO.Region.fetch(),
-                AIO.BoxTemplate.fetch()
+    if !AIO.get('accessToken')
+      @transitionTo 'sign-in'
 
   renderTemplate: ->
     this.render()
@@ -14,12 +12,10 @@ AIO.MainRoute = Ember.Route.extend
     })
 
   setupController: (controller) ->
-    controller.set 'model', AIO.Box.findAll()
-
-    currentUser = AIO.User.first()
-    AIO.set 'currentUser', currentUser
-
-    this.controllerFor('pusher').initialize AIO.get('pusherKey'), AIO.get('pusherEndpoint')
+    AIO.CurrentUser.loadFromStorage (user) ->
+      if user
+        AIO.set 'currentUser', user
+      controller.set '_users', AIO.CurrentUser.find()
 
   events:
     open: (view, box) ->

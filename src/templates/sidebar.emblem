@@ -10,7 +10,7 @@
       ul.dropdown-menu
         li.dropdown-header
           i.icon-bolt &nbsp;
-          | N2O : {{AIO.currentUser.free_n2o}} / {{AIO.currentUser.max_n2o}}
+          | N2O : {{ AIO.currentUser.freeN2O }} / {{ AIO.currentUser.maxN2O }}
         li
           a href='#' click="open 'n2o_bonus'" Earn More N2O
         li
