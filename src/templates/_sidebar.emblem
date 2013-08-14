@@ -30,7 +30,7 @@
           a href='#' click='openPage "applications"' Applications
         li.divider
         li
-          a href='#' click="signout" Sign Out
+          a href='#' click="signOut" Sign Out
 
 #user-info
   AIO.N2OGaugeView

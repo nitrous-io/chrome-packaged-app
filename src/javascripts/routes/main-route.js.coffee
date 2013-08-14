@@ -13,3 +13,6 @@ AIO.MainRoute = Em.Route.extend
     AIO.Box.loadFromStorage ->
       AIO.Box.find().reload()
 
+  events:
+    signedOut: ->
+      @transitionTo 'sign-in'

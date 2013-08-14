@@ -8,6 +8,7 @@ klass.reopenClass
   reset: ->
     @_findAllRecordArray = null
     @clearCache()
+    @clearStorage()
 
   prepopulate: (hashes) ->
     records = @_findAllRecordArray ?= Ember.RecordArray.create(modelClass: this)
@@ -18,7 +19,7 @@ klass.reopenClass
     @_findAllRecordArray?.get('content')
 
   clearStorage: ->
-    Ember.assert 'storageKey needs to be defined' unless @storageKey
+    return unless @storageKey
     toStore = {}
     toStore[@storageKey] = null
     chrome.storage.sync.set toStore
