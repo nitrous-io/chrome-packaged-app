@@ -16,7 +16,7 @@ AIO.MainController = Em.ArrayController.extend
   # model: Box
   sortProperties: ['id']
 
-  webViewURL: null
+  webViewURL: 'about:blank'
   webViewSignedIn: false
   pusher: null
 
