@@ -12,10 +12,15 @@ AIO.MainRoute = Em.Route.extend
     })
 
   setupController: (controller) ->
+    @_super.apply this, arguments
+
     AIO.CurrentUser.loadFromStorage (user) ->
-      if user
-        AIO.set 'currentUser', user
+      AIO.set('currentUser', user) if user
       controller.set '_users', AIO.CurrentUser.find()
+
+  model: ->
+    AIO.Box.loadFromStorage ->
+      AIO.Box.find().reload()
 
   events:
     open: (view, box) ->

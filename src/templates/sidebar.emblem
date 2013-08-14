@@ -36,5 +36,5 @@
   AIO.N2OGaugeView
 
 #boxes-list.accordion
-  each model
+  each arrangedContent
     AIO.BoxView

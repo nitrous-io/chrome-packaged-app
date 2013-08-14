@@ -1,18 +1,20 @@
-#= require ./chrome-model
+#= require ./base-model
 
-AIO.Box = AIO.ChromeModel.extend
-  backend_available     : null
-  box_server_uri        : null
-  box_template_id       : null
-  container_name        : null
-  host                  : null
-  memory                : null
-  owner_id              : null
-  port                  : null
-  region_id             : null
-  name                  : null
-  state                 : null
-  storeage              : null
+AIO.Box = klass = AIO.BaseModel.extend
+  name: Em.attr()
+  state: Em.attr()
+
+  host: Em.attr()
+  port: Em.attr()
+
+  memory: Em.attr()
+  storage: Em.attr()
+  boxServerUri: Em.attr()
+  backendAvailable: Em.attr()
+
+  controllable: (->
+    @get('state') in ['running', 'stopped']
+  ).property 'state'
 
   running: (->
     @get('state') == 'running'
@@ -22,44 +24,20 @@ AIO.Box = AIO.ChromeModel.extend
     @get('state') == 'stopped'
   ).property 'state'
 
-  active: (->
-    @get('state') in ['running', 'stopped']
+  prettyState: (->
+    if state = @get 'state'
+      if state == 'failed'
+        state = 'provisioning_failed'
+      if state.match /ed$/
+        state = state + '!'
+      else if state.match /ing$/
+        state = state + '...'
+
+      state = state.split('_').map((t) -> t.capitalize()).join(' ')
   ).property 'state'
 
-  region: (->
-    AIO.Region.find @get('region_id')
-  ).property 'region_id'
-
-  boxTemplate: (->
-    AIO.BoxTemplate.find @get('box_template_id')
-  ).property 'box_template_id'
-
-  stateForDisplay: (->
-    switch state = @get 'state'
-      when 'failed'
-        'provisioning failed'
-      when 'changing_specs'
-        'changing specs'
-      when 'terminated'
-        'terminated!'
-      else
-        state
-  ).property 'state'
-
-  doAction: (action) ->
-    if action in [ 'start', 'stop', 'restart' ]
-      this.makeRequest action
-    else
-      console.log "Unsupported action - #{action}"
-
-  makeRequest: (action) ->
-    id = @get 'id'
-    AIO.Utils.makeRequest('PUT', "boxes/#{id}/#{action}")
-    .done (data) =>
-      this.setProperties data.box
-    .fail (xhr, status, error) =>
-      console.log error
-
-AIO.Box.reopenClass
-  store: []
-  resourceCollection: 'boxes'
+klass.reopenClass
+  rootKey: 'box'
+  collectionKey: 'boxes'
+  storageKey: 'boxes'
+  url: "#{AIO.get 'host'}/api/v0/boxes"
