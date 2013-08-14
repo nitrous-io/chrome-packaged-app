@@ -19,18 +19,5 @@ AIO.CurrentUser = klass = AIO.BaseModel.extend
 klass.reopenClass
   adapter: AIO.SingularResourceAdapter.create()
   rootKey: 'user'
+  storageKey: 'currentUser'
   url: "#{AIO.get 'host'}/api/v0/user"
-
-  clearStorage: ->
-    chrome.storage.sync.set currentUser: null
-
-  saveToStorage: (user) ->
-    chrome.storage.sync.set currentUser: user.toJSON()?.user
-
-  loadFromStorage: (callback) ->
-    chrome.storage.sync.get 'currentUser', (obj) ->
-      user = null
-      if userHash = obj.currentUser
-        user = klass.cachedRecordForId userHash.id
-        user.load userHash.id, userHash
-      callback? user

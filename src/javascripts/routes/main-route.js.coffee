@@ -6,9 +6,8 @@ AIO.MainRoute = Em.Route.extend
   setupController: (controller) ->
     @_super.apply this, arguments
 
-    AIO.CurrentUser.loadFromStorage (user) ->
-      AIO.set('currentUser', user) if user
-      controller.set '_users', AIO.CurrentUser.find()
+    controller.set '_users', AIO.CurrentUser.loadFromStorage ->
+      AIO.CurrentUser.find().reload()
 
   model: ->
     AIO.Box.loadFromStorage ->

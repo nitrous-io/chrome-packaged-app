@@ -13,5 +13,5 @@ AIO.MainController = Em.ArrayController.extend
   _usersDidChange: (->
     if user = @get '_users.content.0'
       AIO.set 'currentUser', user
-      AIO.CurrentUser.saveToStorage user
-  ).observes '_users.content.@each'
+      AIO.CurrentUser.saveToStorage()
+  ).observes '_users.content.0'
