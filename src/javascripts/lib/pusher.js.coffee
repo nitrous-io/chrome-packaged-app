@@ -1,6 +1,3 @@
-# For now log all messages
-Pusher.log = (message) -> console.log message
-
 AIO.Pusher = klass = Em.Object.extend
   pusherKey: null
   pusherEndpoint: null
@@ -62,5 +59,4 @@ sharedPusherInstance = null
 klass.reopenClass
   sharedInstance: ->
     sharedPusherInstance ?= AIO.Pusher.create.apply AIO.Pusher, arguments
-    console.log sharedPusherInstance
     sharedPusherInstance
