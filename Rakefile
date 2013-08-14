@@ -22,8 +22,14 @@ task :compile do
   puts 'Compiling assets'
 
   sprockets = Sprockets::Environment.new(ROOT_DIR) do |env|
-    env.cache = Sprockets::Cache::FileStore.new('tmp/sprockets')
     env.logger = LOGGER
+
+    if ENV['target'] == 'production'
+      env.js_compressor = Closure::Compiler.new
+      env.css_compressor = YUI::CssCompressor.new
+    else
+      env.cache = Sprockets::Cache::FileStore.new('tmp/sprockets')
+    end
   end
 
   sprockets.context_class.class_eval do
