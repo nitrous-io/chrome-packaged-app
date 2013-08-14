@@ -4,13 +4,18 @@ AIO.MainView = Em.View.extend
 
   didInsertElement: ->
     @_super()
-    @$('webview').on 'loadstop.main-view', (e) ->
+    $webview = @$('webview')
+    $webview.on 'loadstop.main-view', (e) ->
       if contentWindow = e.target.contentWindow
         contentWindow.postMessage 'chromeWebView', AIO.get('host')
+    $webview.on 'newwindow.main-view', (e) ->
+      window.open e.originalEvent.targetUrl
 
   willDestroyElement: ->
     @_super()
-    @$('webview').off 'loadstop.main-view'
+    $webview = @$('webview')
+    $webview.off 'loadstop.main-view'
+    $webview.off 'newwindow.main-view'
 
   toggleSidebar: ->
     if sidebarVisible = @toggleProperty('sidebarVisible')
