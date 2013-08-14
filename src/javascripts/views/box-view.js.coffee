@@ -1,4 +1,4 @@
-AIO.BoxView = Ember.View.extend
+AIO.BoxView = Em.View.extend
   templateName: 'box'
   classNames: ['aio-box-view accordion-group']
 

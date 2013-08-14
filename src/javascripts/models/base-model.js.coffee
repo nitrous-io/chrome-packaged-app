@@ -14,7 +14,7 @@ klass.reopenClass
     @clearStorage()
 
   prepopulate: (hashes) ->
-    records = @_findAllRecordArray ?= Ember.RecordArray.create(modelClass: this)
+    records = @_findAllRecordArray ?= Em.RecordArray.create(modelClass: this)
     records.load(this, hashes) if hashes
     records
 
@@ -28,7 +28,7 @@ klass.reopenClass
     chrome.storage.sync.set toStore
 
   saveToStorage: ->
-    Ember.assert 'storageKey needs to be defined' unless @storageKey
+    Em.assert 'storageKey needs to be defined' unless @storageKey
     toStore = {}
     toStore[@storageKey] = @recordsToStore()?.map (obj) =>
       json = obj.toJSON()
@@ -37,7 +37,7 @@ klass.reopenClass
     chrome.storage.sync.set toStore
 
   loadFromStorage: (callback) ->
-    Ember.assert 'storageKey needs to be defined' unless @storageKey
+    Em.assert 'storageKey needs to be defined' unless @storageKey
     chrome.storage.sync.get @storageKey, (obj) =>
       if hashes = obj[@storageKey]
         records = @prepopulate(hashes)

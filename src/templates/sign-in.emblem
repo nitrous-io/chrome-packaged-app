@@ -3,9 +3,9 @@ form submit="signIn"
     h1.logo Nitrous.IO
 
     .form-group class={ errorMessage:has-error }
-      Ember.TextField classNames="form-control input-lg" placeholder="Username" valueBinding="username" disabledBinding="isSaving"
+      Em.TextField classNames="form-control input-lg" placeholder="Username" valueBinding="username" disabledBinding="isSaving"
     .form-group class={ errorMessage:has-error }
-      Ember.TextField classNames="form-control input-lg" type="password" placeholder="Password" valueBinding="password" disabledBinding="isSaving"
+      Em.TextField classNames="form-control input-lg" type="password" placeholder="Password" valueBinding="password" disabledBinding="isSaving"
 
     .form-group
       button.btn.btn-default.btn-block.btn-lg disabled={signInButtonDisabled} Sign In

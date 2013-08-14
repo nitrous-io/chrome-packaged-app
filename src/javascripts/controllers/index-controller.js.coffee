@@ -1,1 +1,1 @@
-AIO.IndexController = Ember.Controller.extend {}
+AIO.IndexController = Em.Controller.extend()
