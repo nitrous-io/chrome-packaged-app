@@ -3,14 +3,6 @@ AIO.MainRoute = Em.Route.extend
     if !AIO.get('accessToken')
       @transitionTo 'sign-in'
 
-  renderTemplate: ->
-    this.render()
-
-    this.render('sidebar', {
-      into: 'main'
-      outlet: 'sidebar'
-    })
-
   setupController: (controller) ->
     @_super.apply this, arguments
 
