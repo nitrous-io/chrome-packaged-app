@@ -16,8 +16,22 @@ AIO.CurrentUser = klass = AIO.BaseModel.extend
   ).property 'usedN2O', 'maxN2O'
   freeN2o: Em.computed.alias 'freeN2O'
 
+  load: ->
+    @_super.apply this, arguments
+    @constructor.saveToStorage()
+
 klass.reopenClass
   adapter: AIO.SingularResourceAdapter.create()
   rootKey: 'user'
   storageKey: 'currentUser'
+  primaryKey: 'noKey' # primary key is irrelevant since it's a singular resource
   url: "#{AIO.get 'host'}/api/v0/user"
+
+  prepopulate: (hashes) ->
+    record = @cachedRecordForId()
+    if hash = hashes?[0]
+      record.load undefined, hash
+    record
+
+  recordsToStore: ->
+    [@findById()]
