@@ -2,7 +2,7 @@
   .navbar-brand.logo Nitrous.IO
   ul.nav.navbar-nav.pull-right
     li
-      a href='#' click="refresh"
+      a href='#' click="refresh" class={AIO.offline:disabled}
         i.icon-refresh class={content.isLoading:icon-spin}
     li.dropdown
       a.dropdown-toggle data-toggle='dropdown' href='#'
@@ -11,22 +11,22 @@
         li.dropdown-header
           i.icon-bolt &nbsp;
           | N2O : {{ AIO.currentUser.freeN2O }} / {{ AIO.currentUser.maxN2O }}
-        li
+        li class={AIO.offline:disabled}
           a href='#' click='openPage "n2oBonus"' Earn More N2O
-        li
+        li class={AIO.offline:disabled}
           a href='#' click='openPage "invites"' Invites
         li.divider
-        li
+        li class={AIO.offline:disabled}
           a href='#' click='openPage "newBox"'
             | New Box...
-        li
+        li class={AIO.offline:disabled}
           a href='#' click='openPage "boxes"' Boxes
-        li
+        li class={AIO.offline:disabled}
           a href='#' click='openPage "publicKeys"' Public Keys
         li.divider
-        li
+        li class={AIO.offline:disabled}
           a href='#' click='openPage "accountSettings"' Account Settings
-        li
+        li class={AIO.offline:disabled}
           a href='#' click='openPage "applications"' Applications
         li.divider
         li

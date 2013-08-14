@@ -7,6 +7,7 @@
   src: url('/webfonts/2650DC_0_0.eot?#iefix') format('embedded-opentype'),url('/webfonts/2650DC_0_0.woff') format('woff'),url('/webfonts/2650DC_0_0.ttf') format('truetype')
 
 $newNitrousBlue: #2692d7
+$offlineGray: #666
 
 // bootstrap overrides
 
@@ -14,6 +15,7 @@ $newNitrousBlue: #2692d7
   background: $newNitrousBlue
   margin-bottom: 0
   padding-right: 0
+  transition: background-color 1s
   cursor: default
 
 .navbar-brand
@@ -146,7 +148,7 @@ html, body, #app,
   height: 100%
   background: $newNitrousBlue
   border-right: 1px solid #0987ca
-  transition: width 0.3s
+  transition: width 0.3s, background-color 1s
   cursor: pointer
   text-align: center
   font-size: 10px
@@ -226,6 +228,7 @@ html, body, #app,
 
 #aio-sign-in-view
   background: $newNitrousBlue
+  transition: background-color 1s
   display: table
 
   form
@@ -256,6 +259,31 @@ html, body, #app,
 
     &:hover, &:focus
       color: white
+
+a.disabled
+  opacity: 0.65
+  cursor: not-allowed
+
+// offline
+
+.offline
+  .navbar
+    background: $offlineGray
+
+  #app-divider
+    background: $offlineGray
+    border-right-color: darken($offlineGray, 10%)
+
+    i
+      color: #ccc
+
+  .navbar-nav > .open > a,
+  .navbar-nav > .open > a:hover,
+  .navbar-nav > .open > a:focus
+    background-color: $offlineGray
+
+  #aio-sign-in-view
+    background: $offlineGray
 
 // animations
 

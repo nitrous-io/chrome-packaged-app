@@ -8,11 +8,11 @@
       .btn-toolbar
         if running
           .btn-group
-            button.btn.btn-primary click='openPage "ide" this' IDE
+            button.btn.btn-primary click='openPage "ide" this' disabled={AIO.offline} IDE
           .btn-group
-            button.btn.btn-default click='openPage "terminal" this' Terminal
+            button.btn.btn-default click='openPage "terminal" this' disabled={AIO.offline} Terminal
         .btn-group.pull-right
-          button.btn.btn-default.dropdown-toggle data-toggle='dropdown'
+          button.btn.btn-default.dropdown-toggle data-toggle='dropdown' disabled={AIO.offline}
             i.icon-off
           ul.dropdown-menu
             if running

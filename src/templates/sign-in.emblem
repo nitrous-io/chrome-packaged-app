@@ -8,7 +8,10 @@ form submit="signIn"
       Em.TextField classNames="form-control input-lg" type="password" placeholder="Password" valueBinding="password" disabledBinding="isSaving"
 
     .form-group
-      button.btn.btn-default.btn-block.btn-lg disabled={signInButtonDisabled} Sign In
+      if AIO.online
+        button.btn.btn-default.btn-block.btn-lg disabled={signInButtonDisabled} Sign In
+      else
+        button.btn.btn-default.btn-block.btn-lg disabled='disabled' No Internet Connection
     .form-group
       p
-        a href={ AIO.host } target='_blank' Create an Account
+        a href={AIO.host} class={AIO.offline:invisible} target='_blank' Create an Account

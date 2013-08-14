@@ -41,8 +41,9 @@ AIO.MainController = Em.ArrayController.extend
             @set 'webViewSignedIn', true
 
   refresh: ->
-    AIO.CurrentUser.reload()
-    AIO.Box.find().reload()
+    if AIO.get 'online'
+      AIO.CurrentUser.reload()
+      AIO.Box.find().reload()
 
   openPage: (page, box) ->
     @openInWebView Em.String.fmt(kPages[page], [box?.get 'id'])
