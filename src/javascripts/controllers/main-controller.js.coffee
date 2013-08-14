@@ -14,9 +14,10 @@ kSignInWithTokenURLFormat = '%@/users/sign_in_with_token?sign_in_token=%@&redire
 
 AIO.MainController = Em.ArrayController.extend
   # model: Box
-  webViewURL: null
-
   sortProperties: ['id']
+
+  webViewURL: null
+  pusher: null
 
   contentDidChange: (->
     AIO.Box.saveToStorage()

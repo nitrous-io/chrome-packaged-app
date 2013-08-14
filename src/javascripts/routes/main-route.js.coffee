@@ -6,6 +6,8 @@ AIO.MainRoute = Em.Route.extend
   setupController: (controller) ->
     @_super.apply this, arguments
 
+    controller.set 'pusher', AIO.Pusher.sharedInstance pusherKey: AIO.get('pusherKey'), pusherEndpoint: AIO.get('pusherEndpoint')
+
     AIO.set 'currentUser', AIO.CurrentUser.loadFromStorage ->
       AIO.CurrentUser.reload()
 
