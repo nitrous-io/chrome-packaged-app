@@ -14,6 +14,9 @@ klass.reopenClass
     records.load(this, hashes) if hashes
     records
 
+  recordsToStore: ->
+    @_findAllRecordArray?.get('content')
+
   clearStorage: ->
     Ember.assert 'storageKey needs to be defined' unless @storageKey
     toStore = {}
@@ -23,7 +26,7 @@ klass.reopenClass
   saveToStorage: ->
     Ember.assert 'storageKey needs to be defined' unless @storageKey
     toStore = {}
-    toStore[@storageKey] = @_findAllRecordArray?.get('content')?.map (obj) =>
+    toStore[@storageKey] = @recordsToStore()?.map (obj) =>
       json = obj.toJSON()
       json = json[@rootKey] if @rootKey
       json

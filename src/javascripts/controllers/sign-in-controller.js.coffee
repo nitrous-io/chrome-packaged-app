@@ -7,10 +7,10 @@ AIO.SignInController = Em.ObjectController.extend
 
   signIn: ->
     @set 'errorMessage', null
-    @get('model').save().then =>
-      accessToken = @get 'accessToken'
-      AIO.set 'accessToken', accessToken
-      AIO.AccessToken.saveToStroage accessToken
+    model = @get 'model'
+    model.save().then =>
+      AIO.set 'accessToken', model
+      AIO.AccessToken.saveToStorage()
       @send 'signedIn'
     , (jqXHR) =>
       @set 'errorMessage', jqXHR.responseJSON?.error

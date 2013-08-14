@@ -4,4 +4,4 @@ AIO.SignInRoute = Em.Route.extend
 
   events:
     signedIn: ->
-      @transitionTo 'index'
+      @transitionTo 'main'

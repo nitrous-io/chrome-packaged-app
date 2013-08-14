@@ -1,13 +1,17 @@
-AIO.AccessToken = klass = Em.Model.extend
+#= require ./base-model
+
+AIO.AccessToken = klass = AIO.BaseModel.extend
   username: Em.attr()
   password: Em.attr()
   accessToken: Em.attr()
+  token: Em.computed.alias 'accessToken'
 
   clientId: null
   clientSecret: null
 
   didSaveRecord: ->
     @set 'password', null
+    klass.singleton = this
     @_super()
 
   toJSON: ->
@@ -21,13 +25,13 @@ AIO.AccessToken = klass = Em.Model.extend
 klass.reopenClass
   adapter: Em.RESTAdapter.create()
   url: "#{AIO.get 'host'}/oauth/token"
+  primaryKey: 'clientId'
+  storageKey: 'accessToken'
+  singleton: null
 
-  clearStorage: ->
-    chrome.storage.sync.set accessToken: null
+  prepopulate: (hashes) ->
+    if hash = hashes?[0]
+      @singleton = @findFromCacheOrLoad(hash)
 
-  saveToStorage: (tokenString) ->
-    chrome.storage.sync.set accessToken: tokenString
-
-  loadFromStorage: (callback) ->
-    chrome.storage.sync.get 'accessToken', (obj) ->
-      callback? obj.accessToken
+  recordsToStore: ->
+    [@singleton]
