@@ -1,5 +1,5 @@
 .accordion-heading
-  a.accordion-toggle data-toggle='collapse' data-parent='#boxes-list' click="collapseBox boxId target='view'"
+  a.accordion-toggle data-toggle='collapse' data-parent='#boxes-list' click='collapseBox target="view"'
     div class={:state-orb state} title=stateForDisplay
     = name
 .accordion-body.collapse
@@ -8,16 +8,16 @@
       .btn-toolbar
         if running
           .btn-group
-            button.btn.btn-primary click="open 'ide' this" IDE
+            button.btn.btn-primary click='openPage "ide" this' IDE
           .btn-group
-            button.btn.btn-default click="open 'terminal' this" Terminal
+            button.btn.btn-default click='openPage "terminal" this' Terminal
         .btn-group.pull-right
           button.btn.btn-default.dropdown-toggle data-toggle='dropdown'
             i.icon-off
           ul.dropdown-menu
             if running
               li
-                a click="open 'settings' this" Settings
+                a click="openPage 'settings' this" Settings
               li.divider
               li
                 a click="doAction this 'restart'" Restart
