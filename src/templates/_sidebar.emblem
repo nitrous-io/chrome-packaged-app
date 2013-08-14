@@ -35,6 +35,7 @@
 #user-info
   AIO.N2OGaugeView
 
-#boxes-list.accordion
-  each arrangedContent
-    AIO.BoxView
+#boxes-list
+  .accordion
+    each arrangedContent
+      AIO.BoxView
