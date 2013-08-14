@@ -7,22 +7,22 @@ AIO.Box = klass = AIO.BaseModel.extend
   host: Em.attr()
   port: Em.attr()
 
+  ownerId: Em.attr()
+
   memory: Em.attr()
   storage: Em.attr()
   boxServerUri: Em.attr()
   backendAvailable: Em.attr()
 
-  controllable: (->
-    @get('state') in ['running', 'stopped']
-  ).property 'state'
+  controllable: Em.computed.match 'state', /running|stopped/
+  running: Em.computed.equal 'state', 'running'
+  stopped: Em.computed.equal 'state', 'stopped'
 
-  running: (->
-    @get('state') == 'running'
-  ).property 'state'
+  currentUserIdBinding: Em.Binding.oneWay 'AIO.currentUser.id'
 
-  stopped: (->
-    @get('state') == 'stopped'
-  ).property 'state'
+  ownBox: (->
+    @get('currentUserId') == @get('ownerId')
+  ).property 'currentUserId', 'ownerId'
 
   prettyState: (->
     if state = @get 'state'
