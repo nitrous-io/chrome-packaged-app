@@ -4,4 +4,5 @@
   #app-divider click="toggleSidebar target='view'"
     i.icon-ellipsis-vertical
   #app-webview
-    %webview src={webViewURL}
+    if view.webviewVisible
+      %webview src={webViewURL}
