@@ -23,6 +23,10 @@ $offlineGray: #666
   max-width: none
   margin-right: 5px
   margin-left: -15px
+  padding-right: 10px
+  padding-top: 16px
+  padding-bottom: 14px
+  line-height: 20px
 
 .navbar-brand,
 .navbar-brand:hover
@@ -170,6 +174,17 @@ html, body, #app,
 #toolbar
   position: relative
   z-index: 1
+
+.loading-indicator
+  padding: 0
+
+  i
+    color: white
+    opacity: 0
+    transition: opacity .3s
+
+  &.loading i
+    opacity: 0.65
 
 #user-info
   background: #f2f2f2

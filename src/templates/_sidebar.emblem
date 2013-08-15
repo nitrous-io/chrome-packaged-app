@@ -1,6 +1,8 @@
 #toolbar
   .navbar
     .navbar-brand.logo Nitrous.IO
+    p.loading-indicator.navbar-text class={view.loading:loading}
+      i.icon-cog.icon-spin
     ul.nav.navbar-nav.pull-right
       li
         a href='#' click="refresh" class={AIO.offline:disabled}
