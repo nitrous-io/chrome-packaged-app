@@ -12,4 +12,4 @@ AIO.N2OGaugeView = Em.View.extend
   ).property 'freeN2O', 'maxN2O'
 
   click: ->
-    @get('controller').send "open 'n2o_bonus'"
+    @get('controller').openPage 'n2oBonus'
