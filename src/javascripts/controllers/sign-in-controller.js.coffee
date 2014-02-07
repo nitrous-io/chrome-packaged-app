@@ -5,6 +5,10 @@ AIO.SignInController = Em.ObjectController.extend
     @get('isSaving') || !@get('username') || !@get('password')
   ).property 'isSaving', 'username', 'password'
 
+  signUpURL: (->
+    "#{AIO.host}?utm_source=nitrous.io&utm_campaign=nativeapp&utm_content=chrome"
+  ).property 'AIO.host'
+
   signIn: ->
     @set 'errorMessage', null
     model = @get 'model'

@@ -14,4 +14,4 @@ form submit="signIn"
         button.btn.btn-default.btn-block.btn-lg disabled='disabled' No Internet Connection
     .form-group
       p
-        a href={AIO.host} class={AIO.offline:invisible} target='_blank' Create an Account
+        a href={signUpURL} class={AIO.offline:invisible} target='_blank' Create an Account
