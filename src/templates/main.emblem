@@ -1,8 +1,1 @@
-#app-sidebar
-  = partial "sidebar"
-#app-content
-  #app-divider click="toggleSidebar target='view'"
-    i.icon-ellipsis-vertical
-  #app-webview
-    if view.webviewVisible
-      %webview src={webViewURL}
+%webview
