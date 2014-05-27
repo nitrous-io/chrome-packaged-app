@@ -6,14 +6,14 @@ AIO.MainRoute = Em.Route.extend
   setupController: (controller) ->
     @_super.apply this, arguments
 
-    controller.set 'pusher', AIO.Pusher.sharedInstance pusherKey: AIO.get('pusherKey'), pusherEndpoint: AIO.get('pusherEndpoint')
-
     AIO.set 'currentUser', AIO.CurrentUser.loadFromStorage ->
       AIO.CurrentUser.reload()
 
-  model: ->
-    AIO.Box.loadFromStorage ->
-      AIO.Box.find().reload()
+    AIO.SignInToken.reload().then (signInToken) =>
+      token = window.encodeURIComponent(signInToken.get 'token')
+      path = window.encodeURIComponent('/app')
+      webViewURL = "#{AIO.get 'host'}/users/sign_in_with_token?sign_in_token=#{token}&redirect_to=#{path}"
+      controller.set 'webViewURL', "#{AIO.get 'host'}/users/sign_in_with_token?sign_in_token=#{token}&redirect_to=#{path}"
 
   events:
     signedOut: ->
