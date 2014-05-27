@@ -1,11 +1,10 @@
 AIO.MainController = Em.Controller.extend
-  webViewURL: null
+  webViewURL: 'about:blank'
   webViewSignedIn: false
 
   signOut: ->
     AIO.CurrentUser.reset()
     AIO.AccessToken.reset()
-    AIO.Box.reset()
     AIO.SignInToken.reset()
     AIO.set 'currentUser', null
     AIO.set 'accessToken', null
